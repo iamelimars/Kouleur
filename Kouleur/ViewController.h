@@ -18,7 +18,12 @@
 @import CoreGraphics;
 
 
-@interface ViewController : UIViewController <UIScrollViewDelegate>
+@interface ViewController : UIViewController <UIScrollViewDelegate, UIImagePickerControllerDelegate>
+{
+    UIImagePickerController *picker;
+    UIImage *images;
+    
+}
 @property (weak, nonatomic) IBOutlet UIView *introView;
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
 @property (weak, nonatomic) IBOutlet UIScrollView *MainScrollView;
@@ -26,6 +31,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (weak, nonatomic) IBOutlet UIView *cameraButtonView;
 - (IBAction)cameraButtonPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *flipCameraButton;
+- (IBAction)flipCameraPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *selectPhotoButton;
+- (IBAction)selectPhotoButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+- (IBAction)cancelButtonPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+- (IBAction)yesButtonPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *flashButton;
+- (IBAction)flashButtonPressed:(id)sender;
 
 @property (nonatomic) AVCaptureSession *session;
 @property (nonatomic) AVCaptureDevice *device;
@@ -35,6 +51,8 @@
 @property(nonatomic, retain) CALayer *rootLayer;
 @property(weak, nonatomic) NSString *cameraPosition;
 @property(nonatomic, assign) BOOL *imageTaken;
+
+
 
 @end
 
