@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "ViewController1.h"
+#import "ViewController2.h"
+#import "ViewController3.m"
 
 @interface ViewController ()
 
@@ -17,6 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.introView setFrame:self.view.frame];
+    [self.cameraView setFrame:self.view.frame];
+    
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -16,6 +16,12 @@
 		880F6B5E1D8060E000196090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880F6B5C1D8060E000196090 /* LaunchScreen.storyboard */; };
 		880F6B691D8060E000196090 /* KouleurTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B681D8060E000196090 /* KouleurTests.m */; };
 		880F6B741D8060E000196090 /* KouleurUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B731D8060E000196090 /* KouleurUITests.m */; };
+		880F6B841D806F1D00196090 /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B821D806F1D00196090 /* ViewController1.m */; };
+		880F6B851D806F1D00196090 /* ViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880F6B831D806F1D00196090 /* ViewController1.xib */; };
+		880F6B891D806F2F00196090 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B871D806F2F00196090 /* ViewController2.m */; };
+		880F6B8A1D806F2F00196090 /* ViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880F6B881D806F2F00196090 /* ViewController2.xib */; };
+		880F6B8E1D806F5300196090 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B8C1D806F5300196090 /* ViewController3.m */; };
+		880F6B8F1D806F5300196090 /* ViewController3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880F6B8D1D806F5300196090 /* ViewController3.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,15 @@
 		880F6B6F1D8060E000196090 /* KouleurUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KouleurUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		880F6B731D8060E000196090 /* KouleurUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KouleurUITests.m; sourceTree = "<group>"; };
 		880F6B751D8060E100196090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		880F6B811D806F1D00196090 /* ViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController1.h; sourceTree = "<group>"; };
+		880F6B821D806F1D00196090 /* ViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController1.m; sourceTree = "<group>"; };
+		880F6B831D806F1D00196090 /* ViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController1.xib; sourceTree = "<group>"; };
+		880F6B861D806F2F00196090 /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		880F6B871D806F2F00196090 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
+		880F6B881D806F2F00196090 /* ViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController2.xib; sourceTree = "<group>"; };
+		880F6B8B1D806F5300196090 /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
+		880F6B8C1D806F5300196090 /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
+		880F6B8D1D806F5300196090 /* ViewController3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController3.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +120,9 @@
 			children = (
 				880F6B4E1D8060E000196090 /* AppDelegate.h */,
 				880F6B4F1D8060E000196090 /* AppDelegate.m */,
-				880F6B511D8060E000196090 /* ViewController.h */,
-				880F6B521D8060E000196090 /* ViewController.m */,
+				880F6B961D806FCF00196090 /* Model */,
+				880F6B951D806FC500196090 /* View */,
+				880F6B941D806FBD00196090 /* Controller */,
 				880F6B541D8060E000196090 /* Main.storyboard */,
 				880F6B5A1D8060E000196090 /* Assets.xcassets */,
 				880F6B5C1D8060E000196090 /* LaunchScreen.storyboard */,
@@ -141,6 +157,70 @@
 				880F6B751D8060E100196090 /* Info.plist */,
 			);
 			path = KouleurUITests;
+			sourceTree = "<group>";
+		};
+		880F6B901D806F6300196090 /* ViewController3 */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B8B1D806F5300196090 /* ViewController3.h */,
+				880F6B8C1D806F5300196090 /* ViewController3.m */,
+			);
+			name = ViewController3;
+			sourceTree = "<group>";
+		};
+		880F6B911D806F7600196090 /* ViewController2 */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B861D806F2F00196090 /* ViewController2.h */,
+				880F6B871D806F2F00196090 /* ViewController2.m */,
+			);
+			name = ViewController2;
+			sourceTree = "<group>";
+		};
+		880F6B921D806F8600196090 /* ViewController1 */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B811D806F1D00196090 /* ViewController1.h */,
+				880F6B821D806F1D00196090 /* ViewController1.m */,
+			);
+			name = ViewController1;
+			sourceTree = "<group>";
+		};
+		880F6B931D806FA700196090 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B511D8060E000196090 /* ViewController.h */,
+				880F6B521D8060E000196090 /* ViewController.m */,
+			);
+			name = MainViewController;
+			sourceTree = "<group>";
+		};
+		880F6B941D806FBD00196090 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B931D806FA700196090 /* MainViewController */,
+				880F6B921D806F8600196090 /* ViewController1 */,
+				880F6B911D806F7600196090 /* ViewController2 */,
+				880F6B901D806F6300196090 /* ViewController3 */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		880F6B951D806FC500196090 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B831D806F1D00196090 /* ViewController1.xib */,
+				880F6B881D806F2F00196090 /* ViewController2.xib */,
+				880F6B8D1D806F5300196090 /* ViewController3.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		880F6B961D806FCF00196090 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +290,7 @@
 				TargetAttributes = {
 					880F6B471D8060DF00196090 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7FJN59S36F;
 					};
 					880F6B631D8060E000196090 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -246,6 +327,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880F6B8F1D806F5300196090 /* ViewController3.xib in Resources */,
+				880F6B8A1D806F2F00196090 /* ViewController2.xib in Resources */,
+				880F6B851D806F1D00196090 /* ViewController1.xib in Resources */,
 				880F6B5E1D8060E000196090 /* LaunchScreen.storyboard in Resources */,
 				880F6B5B1D8060E000196090 /* Assets.xcassets in Resources */,
 				880F6B561D8060E000196090 /* Main.storyboard in Resources */,
@@ -273,10 +357,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880F6B841D806F1D00196090 /* ViewController1.m in Sources */,
 				880F6B531D8060E000196090 /* ViewController.m in Sources */,
 				880F6B501D8060E000196090 /* AppDelegate.m in Sources */,
 				880F6B4D1D8060E000196090 /* main.m in Sources */,
 				880F6B591D8060E000196090 /* Kouleur.xcdatamodeld in Sources */,
+				880F6B891D806F2F00196090 /* ViewController2.m in Sources */,
+				880F6B8E1D806F5300196090 /* ViewController3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,10 +504,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Kouleur/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.Kouleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -428,10 +518,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Kouleur/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.Kouleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
