@@ -16,6 +16,7 @@
 		880F6B5E1D8060E000196090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880F6B5C1D8060E000196090 /* LaunchScreen.storyboard */; };
 		880F6B691D8060E000196090 /* KouleurTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B681D8060E000196090 /* KouleurTests.m */; };
 		880F6B741D8060E000196090 /* KouleurUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B731D8060E000196090 /* KouleurUITests.m */; };
+		880F6B991D80C3C400196090 /* cameraFocusSquaree.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B981D80C3C400196090 /* cameraFocusSquaree.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		880F6B6F1D8060E000196090 /* KouleurUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KouleurUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		880F6B731D8060E000196090 /* KouleurUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KouleurUITests.m; sourceTree = "<group>"; };
 		880F6B751D8060E100196090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		880F6B971D80C3C400196090 /* cameraFocusSquaree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cameraFocusSquaree.h; sourceTree = "<group>"; };
+		880F6B981D80C3C400196090 /* cameraFocusSquaree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cameraFocusSquaree.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 		880F6B951D806FC500196090 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				880F6B971D80C3C400196090 /* cameraFocusSquaree.h */,
+				880F6B981D80C3C400196090 /* cameraFocusSquaree.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				880F6B531D8060E000196090 /* ViewController.m in Sources */,
 				880F6B501D8060E000196090 /* AppDelegate.m in Sources */,
 				880F6B4D1D8060E000196090 /* main.m in Sources */,
+				880F6B991D80C3C400196090 /* cameraFocusSquaree.m in Sources */,
 				880F6B591D8060E000196090 /* Kouleur.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

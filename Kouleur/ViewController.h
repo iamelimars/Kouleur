@@ -12,6 +12,7 @@
 #import <CoreMedia/CoreMedia.h>
 #import <ImageIO/ImageIO.h>
 #import <QuartzCore/QuartzCore.h>
+#import "cameraFocusSquaree.h"
 @import AVFoundation;
 @import AssetsLibrary;
 @import Photos;
@@ -51,6 +52,11 @@
 @property(nonatomic, retain) CALayer *rootLayer;
 @property(weak, nonatomic) NSString *cameraPosition;
 @property(nonatomic, assign) BOOL *imageTaken;
+@property(weak, nonatomic) cameraFocusSquaree *camFocus;
+@property (nonatomic, retain) UIView *focusSquare;
+@property (nonatomic) CGPoint point;
+@property(weak, nonatomic) NSTimer *fadeInFocus;
+@property(weak, nonatomic) NSTimer *fadeOutFocus;
 
 
 

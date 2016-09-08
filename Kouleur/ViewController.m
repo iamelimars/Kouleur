@@ -14,8 +14,11 @@
 
 @end
 
+const float squareLength = 80.0f;
+
 @implementation ViewController
-@synthesize cameraPosition;
+
+@synthesize cameraPosition, focusSquare;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +35,58 @@
     self.selectPhotoButton.clipsToBounds = TRUE;
     
 }
-
+-(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    
+    /*
+    NSLog(@"focus1");
+        CGPoint touchPoint = [recognizer locationInView:[recognizer.view superview]];
+        //focusLayer.frame = CGRectMake((touchPoint.x-25), (touchPoint.y-25), 50, 50);
+    
+        
+        if (self.imageTaken == NO ) {
+            
+            if ([_device isFocusPointOfInterestSupported]) {
+                NSError *error;
+                NSLog(@"focus2");
+                
+                if ([_device lockForConfiguration:&error]) {
+                    [_device setFocusPointOfInterest:touchPoint];
+                    [_device setExposurePointOfInterest:touchPoint];
+                    NSLog(@"focus3");
+                    
+                    [_device setFocusMode:AVCaptureFocusModeAutoFocus];
+                    if ([_device isExposureModeSupported:AVCaptureExposureModeAutoExpose]){
+                        [_device setExposureMode:AVCaptureExposureModeAutoExpose];
+                        self.point = [recognizer locationInView:self.cameraView];
+                        focusSquare.frame = CGRectMake(self.point.x, self.point.y, 30, 30);
+                        focusSquare.backgroundColor = [UIColor clearColor];
+                        focusSquare.layer.cornerRadius = 15;
+                        focusSquare.layer.borderWidth = 2.0;
+                        focusSquare.layer.borderColor = [UIColor whiteColor].CGColor;
+                        focusSquare.layer.masksToBounds = YES;
+                        focusSquare.alpha = 1.0;
+                        
+                        [self.cameraView addSubview:focusSquare];
+                        [self focusPoint];
+                        self.fadeInFocus = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
+                                                                          selector:@selector(focusFadeIn) userInfo:nil repeats:NO];
+                        
+                        
+                        NSLog(@"X location: %f", _point.x);
+                        NSLog(@"Y Location: %f",_point.y);
+                    }
+                    [_device unlockForConfiguration];
+                }
+            }else{
+                NSLog(@"Not Supported");
+                
+            }
+        }
+        
+        // NSLog(@"x = %f, y = %f", touchPoint.x, touchPoint.y);
+   */
+    
+}
 -(void)viewDidAppear:(BOOL)animated {
     
     self.yesButton.hidden = YES;
@@ -40,6 +94,8 @@
 
     [self createCamera];
     [self setImagePickerButton];
+    focusSquare = [[UIView alloc]init];
+    
     
 }
 
@@ -66,10 +122,20 @@
     [self.rootLayer insertSublayer:self.previewLayer atIndex:0];
     self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
     NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
+    
     [self.stillImageOutput setOutputSettings:outputSettings];
     [self.session addOutput:self.stillImageOutput];
     [self.session startRunning];
-
+   
+    
+    
+    if ([_device lockForConfiguration:&error]) {
+    
+    [self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+        if ([_device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]){
+            [_device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+        }
+    }
     
 }
 -(void)setImagePickerButton {
@@ -243,4 +309,78 @@
         [self.device unlockForConfiguration];
     }
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"focus1");
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        UITouch *touch = obj;
+        CGPoint touchPoint = [touch locationInView:touch.view];
+        //focusLayer.frame = CGRectMake((touchPoint.x-25), (touchPoint.y-25), 50, 50);
+        
+        
+        if (self.imageTaken == NO ) {
+            
+            if ([_device isFocusPointOfInterestSupported]) {
+                NSError *error;
+                NSLog(@"focus2");
+                
+                if ([_device lockForConfiguration:&error]) {
+                    [_device setFocusPointOfInterest:touchPoint];
+                    [_device setExposurePointOfInterest:touchPoint];
+                    NSLog(@"focus3");
+                    
+                    [_device setFocusMode:AVCaptureFocusModeAutoFocus];
+                    if ([_device isExposureModeSupported:AVCaptureExposureModeAutoExpose]){
+                        [_device setExposureMode:AVCaptureExposureModeAutoExpose];
+                        self.point = [touch locationInView:self.cameraView];
+                        focusSquare.frame = CGRectMake(self.point.x, self.point.y, 30, 30);
+                        focusSquare.backgroundColor = [UIColor clearColor];
+                        focusSquare.layer.cornerRadius = 15;
+                        focusSquare.layer.borderWidth = 2.0;
+                        focusSquare.layer.borderColor = [UIColor whiteColor].CGColor;
+                        focusSquare.layer.masksToBounds = YES;
+                        focusSquare.alpha = 1.0;
+                        
+                        [self.cameraView addSubview:focusSquare];
+                        [self focusPoint];
+                        self.fadeInFocus = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
+                                                                          selector:@selector(focusFadeIn) userInfo:nil repeats:NO];
+                        
+                        
+                        NSLog(@"X location: %f", _point.x);
+                        NSLog(@"Y Location: %f",_point.y);
+                    }
+                    [_device unlockForConfiguration];
+                }
+            }else{
+                NSLog(@"Not Supported");
+                
+            }
+        }
+        
+        // NSLog(@"x = %f, y = %f", touchPoint.x, touchPoint.y);
+    }];
+    
+}
+-(void)focusPoint{
+    
+    //focusSquare = [[UIView alloc]initWithFrame:CGRectMake(self.point.x, self.point.y, 20, 20)];
+    //focusSquare.frame = CGRectMake(self.point.x, self.point.y, 20, 20);
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionOverrideInheritedOptions | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations: ^{
+        focusSquare.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:focusSquare];
+    } completion:nil];
+    
+}
+-(void)focusFadeIn{
+    
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionOverrideInheritedOptions | UIViewAnimationOptionCurveEaseInOut  animations: ^{
+        
+        focusSquare.alpha = 0.0;
+        [self.view addSubview:focusSquare];
+    } completion:nil];
+    
+}
+
+
 @end
