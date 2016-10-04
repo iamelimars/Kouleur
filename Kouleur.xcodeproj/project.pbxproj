@@ -17,6 +17,12 @@
 		880F6B691D8060E000196090 /* KouleurTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B681D8060E000196090 /* KouleurTests.m */; };
 		880F6B741D8060E000196090 /* KouleurUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B731D8060E000196090 /* KouleurUITests.m */; };
 		880F6B991D80C3C400196090 /* cameraFocusSquaree.m in Sources */ = {isa = PBXBuildFile; fileRef = 880F6B981D80C3C400196090 /* cameraFocusSquaree.m */; };
+		884B9A981DA4050C00F62390 /* AlbumsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9A971DA4050C00F62390 /* AlbumsTableViewController.m */; };
+		884B9A9C1DA40E4100F62390 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9A9B1DA40E4100F62390 /* PhotosViewController.m */; };
+		884B9AA11DA40EF600F62390 /* PhotosCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9AA01DA40EF600F62390 /* PhotosCell.m */; };
+		884B9AA51DA41F1900F62390 /* ConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9AA41DA41F1900F62390 /* ConfirmViewController.m */; };
+		884B9AA91DA41F7900F62390 /* roundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9AA81DA41F7900F62390 /* roundedButton.m */; };
+		884B9AAC1DA43EDC00F62390 /* EditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9AAB1DA43EDC00F62390 /* EditingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +62,18 @@
 		880F6B751D8060E100196090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		880F6B971D80C3C400196090 /* cameraFocusSquaree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cameraFocusSquaree.h; sourceTree = "<group>"; };
 		880F6B981D80C3C400196090 /* cameraFocusSquaree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cameraFocusSquaree.m; sourceTree = "<group>"; };
+		884B9A961DA4050C00F62390 /* AlbumsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsTableViewController.h; sourceTree = "<group>"; };
+		884B9A971DA4050C00F62390 /* AlbumsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsTableViewController.m; sourceTree = "<group>"; };
+		884B9A9A1DA40E4100F62390 /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		884B9A9B1DA40E4100F62390 /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
+		884B9A9F1DA40EF600F62390 /* PhotosCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCell.h; sourceTree = "<group>"; };
+		884B9AA01DA40EF600F62390 /* PhotosCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCell.m; sourceTree = "<group>"; };
+		884B9AA31DA41F1900F62390 /* ConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmViewController.h; sourceTree = "<group>"; };
+		884B9AA41DA41F1900F62390 /* ConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmViewController.m; sourceTree = "<group>"; };
+		884B9AA71DA41F7900F62390 /* roundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roundedButton.h; sourceTree = "<group>"; };
+		884B9AA81DA41F7900F62390 /* roundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = roundedButton.m; sourceTree = "<group>"; };
+		884B9AAA1DA43EDC00F62390 /* EditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingViewController.h; sourceTree = "<group>"; };
+		884B9AAB1DA43EDC00F62390 /* EditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				880F6B931D806FA700196090 /* MainViewController */,
+				884B9A991DA4075100F62390 /* AlbumsViewController */,
+				884B9A9D1DA40E4600F62390 /* PhotosViewController */,
+				884B9AA61DA41F1E00F62390 /* ConfirmViewController */,
+				884B9AAD1DA43EEB00F62390 /* EditingViewController */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -167,8 +189,8 @@
 		880F6B951D806FC500196090 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				880F6B971D80C3C400196090 /* cameraFocusSquaree.h */,
-				880F6B981D80C3C400196090 /* cameraFocusSquaree.m */,
+				884B9A9E1DA40ED000F62390 /* CameraSquare */,
+				884B9AA21DA40EFC00F62390 /* PhotosCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -176,8 +198,64 @@
 		880F6B961D806FCF00196090 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				884B9AA71DA41F7900F62390 /* roundedButton.h */,
+				884B9AA81DA41F7900F62390 /* roundedButton.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		884B9A991DA4075100F62390 /* AlbumsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				884B9A961DA4050C00F62390 /* AlbumsTableViewController.h */,
+				884B9A971DA4050C00F62390 /* AlbumsTableViewController.m */,
+			);
+			name = AlbumsViewController;
+			sourceTree = "<group>";
+		};
+		884B9A9D1DA40E4600F62390 /* PhotosViewController */ = {
+			isa = PBXGroup;
+			children = (
+				884B9A9A1DA40E4100F62390 /* PhotosViewController.h */,
+				884B9A9B1DA40E4100F62390 /* PhotosViewController.m */,
+			);
+			name = PhotosViewController;
+			sourceTree = "<group>";
+		};
+		884B9A9E1DA40ED000F62390 /* CameraSquare */ = {
+			isa = PBXGroup;
+			children = (
+				880F6B971D80C3C400196090 /* cameraFocusSquaree.h */,
+				880F6B981D80C3C400196090 /* cameraFocusSquaree.m */,
+			);
+			name = CameraSquare;
+			sourceTree = "<group>";
+		};
+		884B9AA21DA40EFC00F62390 /* PhotosCell */ = {
+			isa = PBXGroup;
+			children = (
+				884B9A9F1DA40EF600F62390 /* PhotosCell.h */,
+				884B9AA01DA40EF600F62390 /* PhotosCell.m */,
+			);
+			name = PhotosCell;
+			sourceTree = "<group>";
+		};
+		884B9AA61DA41F1E00F62390 /* ConfirmViewController */ = {
+			isa = PBXGroup;
+			children = (
+				884B9AA31DA41F1900F62390 /* ConfirmViewController.h */,
+				884B9AA41DA41F1900F62390 /* ConfirmViewController.m */,
+			);
+			name = ConfirmViewController;
+			sourceTree = "<group>";
+		};
+		884B9AAD1DA43EEB00F62390 /* EditingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				884B9AAA1DA43EDC00F62390 /* EditingViewController.h */,
+				884B9AAB1DA43EDC00F62390 /* EditingViewController.m */,
+			);
+			name = EditingViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,8 +390,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				880F6B531D8060E000196090 /* ViewController.m in Sources */,
+				884B9AA91DA41F7900F62390 /* roundedButton.m in Sources */,
 				880F6B501D8060E000196090 /* AppDelegate.m in Sources */,
+				884B9AAC1DA43EDC00F62390 /* EditingViewController.m in Sources */,
 				880F6B4D1D8060E000196090 /* main.m in Sources */,
+				884B9A9C1DA40E4100F62390 /* PhotosViewController.m in Sources */,
+				884B9AA11DA40EF600F62390 /* PhotosCell.m in Sources */,
+				884B9A981DA4050C00F62390 /* AlbumsTableViewController.m in Sources */,
+				884B9AA51DA41F1900F62390 /* ConfirmViewController.m in Sources */,
 				880F6B991D80C3C400196090 /* cameraFocusSquaree.m in Sources */,
 				880F6B591D8060E000196090 /* Kouleur.xcdatamodeld in Sources */,
 			);
@@ -545,6 +629,7 @@
 				880F6B7A1D8060E100196090 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		880F6B7B1D8060E100196090 /* Build configuration list for PBXNativeTarget "KouleurTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +638,7 @@
 				880F6B7D1D8060E100196090 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		880F6B7E1D8060E100196090 /* Build configuration list for PBXNativeTarget "KouleurUITests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +647,7 @@
 				880F6B801D8060E100196090 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

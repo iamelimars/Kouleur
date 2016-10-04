@@ -87,8 +87,9 @@ const float squareLength = 80.0f;
    */
     
 }
+
 -(void)viewDidAppear:(BOOL)animated {
-    
+    [self.navigationController setNavigationBarHidden:YES];
     self.yesButton.hidden = YES;
     self.cancelButton.hidden = YES;
 
@@ -98,12 +99,21 @@ const float squareLength = 80.0f;
     
     
 }
+-(void)viewDidDisappear:(BOOL)animated {
+    
+    [self.session stopRunning];
+    [self.previewLayer removeFromSuperlayer];
+    self.previewLayer = nil;
+    self.session = nil;
+    
+}
 
 - (void)createCamera {
     
     self.session = [[AVCaptureSession alloc]init];
     self.session.sessionPreset = AVCaptureSessionPresetHigh;
     self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    //self.device = [self cameraWithPosition:AVCaptureDevicePositionFront];
     NSError *error = nil;
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:&error];
     
@@ -127,7 +137,6 @@ const float squareLength = 80.0f;
     [self.session addOutput:self.stillImageOutput];
     [self.session startRunning];
    
-    
     
     if ([_device lockForConfiguration:&error]) {
     
