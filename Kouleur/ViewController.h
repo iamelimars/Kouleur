@@ -13,6 +13,7 @@
 #import <ImageIO/ImageIO.h>
 #import <QuartzCore/QuartzCore.h>
 #import "cameraFocusSquaree.h"
+#import "EditingViewController.h"
 @import AVFoundation;
 @import AssetsLibrary;
 @import Photos;
@@ -43,6 +44,8 @@
 - (IBAction)yesButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 - (IBAction)flashButtonPressed:(id)sender;
+
+
 
 @property (nonatomic) AVCaptureSession *session;
 @property (nonatomic) AVCaptureDevice *device;

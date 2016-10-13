@@ -391,5 +391,15 @@ const float squareLength = 80.0f;
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.destinationViewController isKindOfClass:[EditingViewController class]]) {
+        EditingViewController *editingViewController = segue.destinationViewController;
+        editingViewController.editingImage = self.imagePreview.image;
+    }
+    
+    
+}
+
 
 @end

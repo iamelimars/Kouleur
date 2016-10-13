@@ -132,6 +132,7 @@
 				<string>884B9AAC1DA43EDC00F62390</string>
 				<string>880F6B4D1D8060E000196090</string>
 				<string>884B9A9C1DA40E4100F62390</string>
+				<string>88633ABD1DAF14F80097B617</string>
 				<string>884B9AA11DA40EF600F62390</string>
 				<string>884B9A981DA4050C00F62390</string>
 				<string>884B9AA51DA41F1900F62390</string>
@@ -149,7 +150,7 @@
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>DE8F68863AE95DB2205750D5</string>
+				<string>92DDC49F7992809A8294DAEA</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -1111,6 +1112,7 @@
 				<string>884B9A9D1DA40E4600F62390</string>
 				<string>884B9AA61DA41F1E00F62390</string>
 				<string>884B9AAD1DA43EEB00F62390</string>
+				<string>88633ABE1DAF15080097B617</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -1462,6 +1464,60 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>88633ABB1DAF14F80097B617</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ColorsViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>88633ABC1DAF14F80097B617</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ColorsViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>88633ABD1DAF14F80097B617</key>
+		<dict>
+			<key>fileRef</key>
+			<string>88633ABC1DAF14F80097B617</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>88633ABE1DAF15080097B617</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>88633ABB1DAF14F80097B617</string>
+				<string>88633ABC1DAF14F80097B617</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>ColorsViewController</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>92DDC49F7992809A8294DAEA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D53D1091FBADC1CA1B296EF6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>B069D9C66029B92105752B97</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -1507,31 +1563,24 @@ fi
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DCDD60CE9613A9D496CED0A2</key>
+		<key>D53D1091FBADC1CA1B296EF6</key>
 		<dict>
 			<key>explicitFileType</key>
-			<string>archive.ar</string>
+			<string>wrapper.framework</string>
 			<key>includeInIndex</key>
 			<string>0</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>libPods-Kouleur.a</string>
+			<string>Pods_Kouleur.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>DE8F68863AE95DB2205750D5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DCDD60CE9613A9D496CED0A2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>E054857B1C7621F244C56003</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>DCDD60CE9613A9D496CED0A2</string>
+				<string>D53D1091FBADC1CA1B296EF6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
