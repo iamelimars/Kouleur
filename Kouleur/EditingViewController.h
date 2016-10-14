@@ -11,6 +11,8 @@
 #import "HUMSlider.h"
 #import "MZFormSheetPresentationViewController.h"
 #import "MZFormSheetPresentationViewControllerSegue.h"
+#import "ColorsViewController.h"
+
 
 @import QuartzCore;
 @import CoreImage;
@@ -19,7 +21,7 @@
 @import CoreMedia;
 @import CoreVideo;
 
-@interface EditingViewController : UIViewController
+@interface EditingViewController : UIViewController 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) UIImage *editingImage;
 
@@ -40,6 +42,8 @@
 @property (nonatomic, strong) HUMSlider *opacitySlider;
 @property (nonatomic, strong) HUMSlider *saturationSlider;
 @property (weak, nonatomic) IBOutlet UIView *filterView;
+
+@property CGFloat currentHue;
 
 
 @end

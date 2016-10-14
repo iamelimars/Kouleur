@@ -11,12 +11,12 @@
 #import "ColorsViewController.h"
 
 
-@interface EditingViewController ()
+@interface EditingViewController () <passColorProtocol>
 
 @end
 
 @implementation EditingViewController
-@synthesize filtersSegmentedControl, bottomSegmentedControl, brightnessView, opacityView, saturationView, brightnessSlider, saturationSlider, opacitySlider;
+@synthesize filtersSegmentedControl, bottomSegmentedControl, brightnessView, opacityView, saturationView, brightnessSlider, saturationSlider, opacitySlider, currentHue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +37,7 @@
     self.navigationController.navigationBarHidden = YES;
     self.imageView.image = self.editingImage;
     
+    NSLog(@"Current Hue %f", currentHue);
 }
 
 
@@ -139,7 +140,10 @@
     
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc]initWithContentViewController:colorsVC];
     formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width * 0.80, self.view.frame.size.height * 0.75);
-
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.presentationController.shouldApplyBackgroundBlurEffect = YES;
+    formSheetController.interactivePanGestureDismissalDirection = MZFormSheetPanGestureDismissDirectionAll;
+    formSheetController.allowDismissByPanningPresentedView = YES;
     [self presentViewController:formSheetController animated:YES completion:nil];
     
 }
@@ -308,6 +312,12 @@
    // NSArray *colorsSaturation;
     //colorsSaturation = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:0/100.0 brightness:self.brightnessSlider.value alpha:1], [UIColor colorWithHue:_hueInt/360.0 saturation:100.0/100.0 brightness:self.brightnessSlider.value alpha:1], nil];
     
+    
+}
+
+-(void)passColor:(int *)hue {
+    
+    NSLog(@"Passed number is %@", hue);
     
 }
 
