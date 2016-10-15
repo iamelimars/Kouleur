@@ -11,7 +11,7 @@
 #import "ColorsViewController.h"
 
 
-@interface EditingViewController () <passColorProtocol>
+@interface EditingViewController ()
 
 @end
 
@@ -36,11 +36,21 @@
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
     self.imageView.image = self.editingImage;
+    self.filterView.backgroundColor = [UIColor colorWithHue:0.350000 saturation:1.0 brightness:1.0 alpha:1.0];
     
-    NSLog(@"Current Hue %f", currentHue);
 }
 
-
+-(void)updateHue {
+    
+    //NSLog(@"Current Hueeeeee %f", currentHue);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.filterView.backgroundColor = [UIColor colorWithHue:currentHue saturation:1.0 brightness:1.0 alpha:1.0];
+        
+    });
+    
+    
+}
 -(void)createEditingControls {
     
     filtersSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"White Point", @"Monochrome", @"Fill", @"None"]];
@@ -137,7 +147,7 @@
 -(void)toColorsViewController {
     
     ColorsViewController *colorsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ColorsViewController"];
-    
+    [colorsVC setDelegate:self];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc]initWithContentViewController:colorsVC];
     formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width * 0.80, self.view.frame.size.height * 0.75);
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -198,7 +208,7 @@
     brightnessSlider.minimumTrackTintColor = [UIColor clearColor];
     
     
-    NSArray *colors;
+    //NSArray *colors;
     //colors = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:0.0f alpha:opacitySlider.value], [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:1.0f alpha:opacitySlider.value], nil];
     //brightnessView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:CGRectMake(0, 0, self.brightnessView.frame.size.width, self.brightnessView.frame.size.height) andColors:colors];
     
@@ -232,7 +242,7 @@
     opacitySlider.minimumTrackTintColor = [UIColor clearColor];
     
     
-    NSArray *colors;
+    //NSArray *colors;
     //colors = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:0], [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:1], nil];
     
     //opacityView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:CGRectMake(0, 0, self.opacityView.frame.size.width, self.opacityView.frame.size.height) andColors:colors];
@@ -271,7 +281,7 @@
     [saturationSlider setMinimumTrackTintColor:[UIColor clearColor]];
     [saturationSlider setMaximumTrackTintColor:[UIColor clearColor]];
     
-    NSArray *colorsSaturation;
+    //NSArray *colorsSaturation;
     //colorsSaturation = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:0/100.0 brightness:self.brightnessSlider.value alpha:1], [UIColor colorWithHue:_hueInt/360.0 saturation:100.0/100.0 brightness:self.brightnessSlider.value alpha:1], nil];
     
     //saturationView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:CGRectMake(0, 0, self.saturationView.frame.size.width, self.saturationView.frame.size.height) andColors:colorsSaturation];
@@ -313,15 +323,26 @@
     //colorsSaturation = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:0/100.0 brightness:self.brightnessSlider.value alpha:1], [UIColor colorWithHue:_hueInt/360.0 saturation:100.0/100.0 brightness:self.brightnessSlider.value alpha:1], nil];
     
     
-}
-
--(void)passColor:(int *)hue {
+}           
+/*
+-(void)passColor:(int)hue {
     
-    NSLog(@"Passed number is %@", hue);
+    NSLog(@"Passed number is %d", hue);
     
 }
-
-
+*/
+-(void)passColor:(NSString *)hue {
+    
+    NSLog(@"%@", hue);
+    NSLog(@"test");
+}
+-(void)passHueValue:(CGFloat)hueValue {
+    
+    NSLog(@"This is the hue value %f", hueValue);
+    
+    self.filterView.backgroundColor = [UIColor colorWithHue:hueValue saturation:1.0 brightness:1.0 alpha:1.0];
+    
+}
 /*
 #pragma mark - Navigation
 

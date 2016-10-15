@@ -145,7 +145,7 @@ static CGSize AssetGridThumbnailSize;
             [collectionView reloadData];
             
         } else {
-            /*
+ 
              Tell the collection view to animate insertions and deletions if we
              have incremental diffs.
  
@@ -186,7 +186,7 @@ static CGSize AssetGridThumbnailSize;
     CGRect preheatRect = self.collectionView.bounds;
     preheatRect = CGRectInset(preheatRect, 0.0f, -0.5f * CGRectGetHeight(preheatRect));
     
-    /*
+    
      Check if the collection view is showing an area that is significantly
      different to the last preheated area.
  

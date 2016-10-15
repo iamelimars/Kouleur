@@ -10,16 +10,16 @@
 #import "ColorsCollectionViewCell.h"
 #import "EditingViewController.h"
 
-@protocol passColorProtocol <NSObject>
+@protocol PassColorDelegate <NSObject>
 
-@required
--(void)passColor:(int *)hue;
+-(void)passColor:(NSString *)hue;
+-(void)passHueValue:(CGFloat)hueValue;
 
 @end
 
 @interface ColorsViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) id<passColorProtocol> delegate;
-@property int *hue;
+@property (nonatomic, weak) id<PassColorDelegate>delegate;
+@property int *huee;
 
 @end

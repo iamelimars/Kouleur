@@ -51,15 +51,10 @@
     
     
     NSLog(@"%f", indexPath.row/360.0);
-    int hue = indexPath.row;
-    NSLog(@"%d", hue);
-    [delegate passColor:&hue];
-    
-    EditingViewController *editingVC = [[EditingViewController alloc]init];
-        editingVC.currentHue = indexPath.row/360.0;
+    [self.delegate passColor:@"Testing this out"];
+    [self.delegate passHueValue:indexPath.row/360.0];
     
     [self dismissViewControllerAnimated:YES completion:^{
-        
         
         
     }];

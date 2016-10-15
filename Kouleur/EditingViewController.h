@@ -20,8 +20,9 @@
 @import OpenGLES;
 @import CoreMedia;
 @import CoreVideo;
+@protocol PassColorDelegate;
 
-@interface EditingViewController : UIViewController 
+@interface EditingViewController : UIViewController <PassColorDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) UIImage *editingImage;
 
@@ -44,6 +45,6 @@
 @property (weak, nonatomic) IBOutlet UIView *filterView;
 
 @property CGFloat currentHue;
-
+-(void)updateHue;
 
 @end
