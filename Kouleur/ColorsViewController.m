@@ -48,16 +48,11 @@
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    NSLog(@"%f", indexPath.row/360.0);
+    //Methods from protocol
     [self.delegate passColor:@"Testing this out"];
     [self.delegate passHueValue:indexPath.row/360.0];
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-        
-    }];
+    [self.delegate isHueSelected:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -73,4 +68,8 @@
 }
 */
 
+- (IBAction)cancelButtonPressed:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

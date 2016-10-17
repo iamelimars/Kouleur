@@ -12,6 +12,9 @@
 #import "MZFormSheetPresentationViewController.h"
 #import "MZFormSheetPresentationViewControllerSegue.h"
 #import "ColorsViewController.h"
+#import <ChameleonFramework/Chameleon.h>
+#import "GPUImage.h"
+
 
 
 @import QuartzCore;
@@ -20,11 +23,15 @@
 @import OpenGLES;
 @import CoreMedia;
 @import CoreVideo;
+@import CoreGraphics;
 @protocol PassColorDelegate;
 
 @interface EditingViewController : UIViewController <PassColorDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *editingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) UIImage *editingImage;
+@property (weak, nonatomic) UIImage *inputImage;
+@property (strong, nonatomic) UIImage *newwImage;
 
 @property (nonatomic, strong) HMSegmentedControl *filtersSegmentedControl;
 @property (nonatomic, strong) HMSegmentedControl *bottomSegmentedControl;
@@ -34,17 +41,33 @@
 
 @property (nonatomic, weak) CIFilter *colorMonochrome;
 @property (nonatomic, weak) CIFilter *WhitePointAdjust;
+@property (nonatomic, weak) CIFilter *filter;
 
 @property (nonatomic, strong) UIView *brightnessView;
 @property (nonatomic, strong) UIView *opacityView;
 @property (nonatomic, strong) UIView *saturationView;
 
+@property (strong, nonatomic) GPUImageBrightnessFilter *brightnessFilter;
+@property (strong, nonatomic) GPUImageSaturationFilter *saturationFilter;
+@property (strong, nonatomic) GPUImageRGBFilter *rgbFilter;
+@property (strong, nonatomic) GPUImageOpacityFilter *opacityFilter;
+@property (strong, nonatomic) GPUImagePicture *fx_image;
+
+
 @property (nonatomic, strong) HUMSlider *brightnessSlider;
 @property (nonatomic, strong) HUMSlider *opacitySlider;
 @property (nonatomic, strong) HUMSlider *saturationSlider;
 @property (weak, nonatomic) IBOutlet UIView *filterView;
+@property (nonatomic) NSString *filterName;
 
+@property (strong, nonatomic) UIColor* filterColor;
+
+@property (nonatomic) CGColorRef colors;
+
+@property BOOL isHueSelected;
+@property BOOL filterIsActive;
 @property CGFloat currentHue;
+
 -(void)updateHue;
 
 @end

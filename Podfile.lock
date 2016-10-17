@@ -1,0 +1,27 @@
+PODS:
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - GPUImage (0.1.7)
+  - HMSegmentedControl (1.5.3)
+  - HUMSlider (1.1.0)
+  - MZAppearance (1.1.6)
+  - MZFormSheetPresentationController (2.4.2):
+    - MZAppearance
+
+DEPENDENCIES:
+  - ChameleonFramework
+  - GPUImage (~> 0.1)
+  - HMSegmentedControl
+  - HUMSlider
+  - MZFormSheetPresentationController
+
+SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  HMSegmentedControl: 7c6145afb50f26cec5f3243082f6f12b9f41318f
+  HUMSlider: 02b165c6be569b2cf87626fcc371a7420425efcf
+  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
+  MZFormSheetPresentationController: c1dc3bce639d2393b3cc416fcb6e050eb5bca062
+
+COCOAPODS: 0.39.0

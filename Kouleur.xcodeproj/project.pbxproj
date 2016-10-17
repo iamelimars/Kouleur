@@ -25,6 +25,12 @@
 		884B9AAC1DA43EDC00F62390 /* EditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884B9AAB1DA43EDC00F62390 /* EditingViewController.m */; };
 		88633ABD1DAF14F80097B617 /* ColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88633ABC1DAF14F80097B617 /* ColorsViewController.m */; };
 		887AB5FB1DB0683900A3026C /* ColorsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 887AB5FA1DB0683900A3026C /* ColorsCollectionViewCell.m */; };
+		8896D6621DB55C95000B53F0 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6611DB55C95000B53F0 /* GPUImage.framework */; };
+		8896D6641DB55CF8000B53F0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6631DB55CF8000B53F0 /* CoreMedia.framework */; };
+		8896D6661DB55D01000B53F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6651DB55D01000B53F0 /* CoreVideo.framework */; };
+		8896D6681DB55D0B000B53F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6671DB55D0B000B53F0 /* OpenGLES.framework */; };
+		8896D66A1DB55D15000B53F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6691DB55D15000B53F0 /* AVFoundation.framework */; };
+		8896D66C1DB55D1A000B53F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D66B1DB55D1A000B53F0 /* QuartzCore.framework */; };
 		92DDC49F7992809A8294DAEA /* Pods_Kouleur.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53D1091FBADC1CA1B296EF6 /* Pods_Kouleur.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +88,12 @@
 		88633ABC1DAF14F80097B617 /* ColorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsViewController.m; sourceTree = "<group>"; };
 		887AB5F91DB0683900A3026C /* ColorsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsCollectionViewCell.h; sourceTree = "<group>"; };
 		887AB5FA1DB0683900A3026C /* ColorsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsCollectionViewCell.m; sourceTree = "<group>"; };
+		8896D6611DB55C95000B53F0 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUImage.framework; path = "Pods/../build/Debug-iphoneos/GPUImage.framework"; sourceTree = "<group>"; };
+		8896D6631DB55CF8000B53F0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8896D6651DB55D01000B53F0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		8896D6671DB55D0B000B53F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		8896D6691DB55D15000B53F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8896D66B1DB55D1A000B53F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C09C2A2F1EE2C886D5D064BF /* Pods-Kouleur.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kouleur.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kouleur/Pods-Kouleur.debug.xcconfig"; sourceTree = "<group>"; };
 		D53D1091FBADC1CA1B296EF6 /* Pods_Kouleur.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kouleur.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +103,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8896D66C1DB55D1A000B53F0 /* QuartzCore.framework in Frameworks */,
+				8896D66A1DB55D15000B53F0 /* AVFoundation.framework in Frameworks */,
+				8896D6681DB55D0B000B53F0 /* OpenGLES.framework in Frameworks */,
+				8896D6661DB55D01000B53F0 /* CoreVideo.framework in Frameworks */,
+				8896D6641DB55CF8000B53F0 /* CoreMedia.framework in Frameworks */,
+				8896D6621DB55C95000B53F0 /* GPUImage.framework in Frameworks */,
 				92DDC49F7992809A8294DAEA /* Pods_Kouleur.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +312,12 @@
 		E054857B1C7621F244C56003 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8896D66B1DB55D1A000B53F0 /* QuartzCore.framework */,
+				8896D6691DB55D15000B53F0 /* AVFoundation.framework */,
+				8896D6671DB55D0B000B53F0 /* OpenGLES.framework */,
+				8896D6651DB55D01000B53F0 /* CoreVideo.framework */,
+				8896D6631DB55CF8000B53F0 /* CoreMedia.framework */,
+				8896D6611DB55C95000B53F0 /* GPUImage.framework */,
 				D53D1091FBADC1CA1B296EF6 /* Pods_Kouleur.framework */,
 			);
 			name = Frameworks;
@@ -646,6 +670,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Kouleur/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.Kouleur;
@@ -661,6 +689,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Kouleur/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EliMarsh.Kouleur;

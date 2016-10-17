@@ -16,17 +16,28 @@
 @end
 
 @implementation EditingViewController
-@synthesize filtersSegmentedControl, bottomSegmentedControl, brightnessView, opacityView, saturationView, brightnessSlider, saturationSlider, opacitySlider, currentHue;
+@synthesize filtersSegmentedControl, bottomSegmentedControl, brightnessView, opacityView, saturationView, brightnessSlider, saturationSlider, opacitySlider, currentHue, filter, filterColor, colors, brightnessFilter, fx_image, saturationFilter, opacityFilter, inputImage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isHueSelected = NO;
+    self.filterIsActive = YES;
     self.filterView.hidden = YES;
+    self.filterName = @"CIWhitePointAdjust";
+    
+    brightnessFilter = [[GPUImageBrightnessFilter alloc] init];
+    saturationFilter = [[GPUImageSaturationFilter alloc]init];
+    opacityFilter = [[GPUImageOpacityFilter alloc] init];
+    
+    inputImage = self.editingImage;
     
     // Do any additional setup after loading the view.
     [self createEditingControls];
     [self createOpacity];
     [self createSaturation];
     [self createBrightness];
+    //[self createFilter];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,21 +47,91 @@
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
     self.imageView.image = self.editingImage;
+    self.editingImageView.image = self.editingImage;
     self.filterView.backgroundColor = [UIColor colorWithHue:0.350000 saturation:1.0 brightness:1.0 alpha:1.0];
+    self.filterColor = [UIColor colorWithHue:currentHue saturation:1.0 brightness:1.0 alpha:0.7];
     
 }
 
--(void)updateHue {
+-(void)createFilter {
+    self.editingImageView.image = self.editingImage;
     
-    //NSLog(@"Current Hueeeeee %f", currentHue);
+    UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+    colors = [self.filterColor CGColor];
+    if (self.filterColor == nil) {
+        //NSLog(@"colorssssss");
+    }
+    NSLog(@"%@", colors);
+    
+    //self.filterColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+    //filtercolor = [filtercolor CGColor];
+    CIImage *inputImage = [[CIImage alloc] initWithCGImage:[self.imageView.image CGImage]];
+    filter = [CIFilter filterWithName:self.filterName];
+    [filter setDefaults];
+    [filter setValue:inputImage forKey:@"inputImage"];
+    [filter setValue:[CIColor colorWithCGColor:colors] forKey:@"inputColor"];
+    CIImage *outputImage = [filter valueForKey:@"outputImage"];
+    EAGLContext *myEAGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    NSDictionary *options = @{ kCIContextWorkingColorSpace : [NSNull null] };
+    CIContext *myContext = [CIContext contextWithEAGLContext:myEAGLContext options:options];
+    
+    CGImageRef imgRef = [myContext createCGImage:outputImage fromRect:outputImage.extent];
+    
+    UIImage* img = [[UIImage alloc] initWithCGImage:imgRef scale:1.0 orientation:originalOrientation];
+    
+    CGImageRelease(imgRef);
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.filterView.backgroundColor = [UIColor colorWithHue:currentHue saturation:1.0 brightness:1.0 alpha:1.0];
-        
+        self.editingImageView.image = img;
     });
+
+//    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+//    
+//    dispatch_async(concurrentQueue, ^{
+//
+//
+//        
+//        UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+//        colors = [self.filterColor CGColor];
+//        if (self.filterColor == nil) {
+//            //NSLog(@"colorssssss");
+//        }
+//        NSLog(@"%@", colors);
+//        
+//        //self.filterColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+//        //filtercolor = [filtercolor CGColor];
+//        CIImage *inputImage = [[CIImage alloc] initWithCGImage:[self.imageView.image CGImage]];
+//        filter = [CIFilter filterWithName:self.filterName];
+//        [filter setDefaults];
+//        [filter setValue:inputImage forKey:@"inputImage"];
+//        [filter setValue:[CIColor colorWithCGColor:colors] forKey:@"inputColor"];
+//        CIImage *outputImage = [filter valueForKey:@"outputImage"];
+//        EAGLContext *myEAGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+//        NSDictionary *options = @{ kCIContextWorkingColorSpace : [NSNull null] };
+//        CIContext *myContext = [CIContext contextWithEAGLContext:myEAGLContext options:options];
+//        
+//        CGImageRef imgRef = [myContext createCGImage:outputImage fromRect:outputImage.extent];
+//        
+//        UIImage* img = [[UIImage alloc] initWithCGImage:imgRef scale:1.0 orientation:originalOrientation];
+//        
+//        CGImageRelease(imgRef);
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.editingImageView.image = img;
+//        });
+//        
+//        
+//    });
     
     
 }
+
+-(void)removeFilter {
+    
+    self.imageView.image = self.editingImage;
+    
+}
+
 -(void)createEditingControls {
     
     filtersSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"White Point", @"Monochrome", @"Fill", @"None"]];
@@ -82,7 +163,6 @@
     //[segmentedControl4 setFrame:CGRectMake(0, viewHeight- 60, viewWidth, 60)];
     [bottomSegmentedControl setFrame:CGRectMake(self.categoriesView.frame.origin.x, 0, self.categoriesView.frame.size.width, self.categoriesView.frame.size.height)];
     [bottomSegmentedControl setIndexChangeBlock:^(NSInteger index) {
-        NSLog(@"Selected index %ld (via block)", (long)index);
     }];
     bottomSegmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
     bottomSegmentedControl.selectionIndicatorHeight = 1.0f;
@@ -151,7 +231,7 @@
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc]initWithContentViewController:colorsVC];
     formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width * 0.80, self.view.frame.size.height * 0.75);
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.presentationController.shouldApplyBackgroundBlurEffect = YES;
+    //formSheetController.presentationController.shouldApplyBackgroundBlurEffect = YES;
     formSheetController.interactivePanGestureDismissalDirection = MZFormSheetPanGestureDismissDirectionAll;
     formSheetController.allowDismissByPanningPresentedView = YES;
     [self presentViewController:formSheetController animated:YES completion:nil];
@@ -160,28 +240,42 @@
 
 -(void)filterSegmentedControl:(id)sender{
 
-    switch (self.filtersSegmentedControl.selectedSegmentIndex) {
-        case 0:
-            self.filterView.hidden = YES;
-            NSLog(@"White Point");
-            break;
-        case 1:
-            self.filterView.hidden = YES;
-            NSLog(@"Monochrome");
-            break;
-        case 2:
-            self.filterView.hidden = NO;
-            NSLog(@"Fill");
-            break;
-        case 3:
-            self.filterView.hidden = YES;
-            NSLog(@"None");
-            break;
-        
-        default:
-            break;
-    }
+    if (self.isHueSelected == NO) {
+        //self.filterView.hidden = YES;
+    } else {
     
+        switch (self.filtersSegmentedControl.selectedSegmentIndex) {
+            case 0:
+                self.filterIsActive = YES;
+                self.filterName = @"CIWhitePointAdjust";
+                [self createFilter];
+                //self.filterView.hidden = YES;
+                NSLog(@"White Point");
+                break;
+            case 1:
+                self.filterIsActive = YES;
+                self.filterName = @"CIColorMonochrome";
+                [self createFilter];
+                //self.filterView.hidden = YES;
+                NSLog(@"Monochrome");
+                break;
+            case 2:
+                self.filterIsActive = NO;
+                //self.filterView.hidden = NO;
+                [self removeFilter];
+                NSLog(@"Fill");
+                break;
+            case 3:
+                self.filterIsActive = NO;
+                //self.filterView.hidden = YES;
+                [self removeFilter];
+                NSLog(@"None");
+                break;
+                
+            default:
+                break;
+        }
+    }
 
 
 }
@@ -263,7 +357,6 @@
     int viewWidth = CGRectGetWidth(self.view.frame); //375
     int sliderWidth = viewWidth - 100;
     int sliderHeight = filtersSegmentedControl.frame.size.height - ((filtersSegmentedControl.frame.size.height/5)*2);
-    NSLog(@"slider Height %i", sliderHeight);
     
     saturationView = [[UIView alloc]initWithFrame:filtersSegmentedControl.frame];
     saturationSlider = [[HUMSlider alloc]init];
@@ -299,38 +392,73 @@
     saturationView.hidden = YES;
     
 }
+
+#pragma mark - sliderActions
+
 -(void)brightnessSliderChanged:(id)sender{
-    //_hueColor = [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:opacitySlider.value];
-    //[self addFilter];
+//    
+//    //CGFloat sliderValue = self.brightnessSlider.value;
+//    self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+//    colors = [[UIColor colorWithHue:currentHue saturation:1.0 brightness:self.brightnessSlider.value alpha:1.0] CGColor];
+//    [filter setValue:[CIColor colorWithCGColor:colors] forKey:@"inputColor"];
+//    CIImage *outputImage = filter.outputImage;
+//    CGImageRef imgRef = [myContext createCGImage:outputImage fromRect:outputImage.extent];
+//    
+//    UIImage* img = [[UIImage alloc] initWithCGImage:imgRef];
+//    CGImageRelease(imgRef);
+//    
+//    self.imageView.image = img;
+        //[self createFilter];
     
+    if (self.filterIsActive == YES) {
+        self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+        NSLog(@"Brightness valueeee%f", self.brightnessSlider.value);
+        [self createFilter];
+    } else {
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            self.filterView.backgroundColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+        
+        });
+    }
     
 }
 
 -(void)opacitySliderChanged:(id)sender{
-    
-   // _hueColor = [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:opacitySlider.value];
-   // [self addFilter];
-    
+    //[self createFilter];
+    if (self.filterIsActive == YES) {
+        self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+        [self createFilter];
+    } else {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.filterView.backgroundColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+            
+        });
+    }
+
     
 }
 -(void)saturationSliderChanged:(id)sender{
-    
-    //NSLog(@"%f", saturationSlider.value);
-    //_hueColor = [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:opacitySlider.value];
-    //[self addFilter];
-    
-   // NSArray *colorsSaturation;
-    //colorsSaturation = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:0/100.0 brightness:self.brightnessSlider.value alpha:1], [UIColor colorWithHue:_hueInt/360.0 saturation:100.0/100.0 brightness:self.brightnessSlider.value alpha:1], nil];
-    
-    
+    //[self createFilter];
+    if (self.filterIsActive == YES) {
+        self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+        [self createFilter];
+    } else {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.filterView.backgroundColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+            
+        });
+    }
+
 }           
-/*
--(void)passColor:(int)hue {
-    
-    NSLog(@"Passed number is %d", hue);
-    
-}
-*/
+
+#pragma mark - PassColorDelegate Methods
+
 -(void)passColor:(NSString *)hue {
     
     NSLog(@"%@", hue);
@@ -339,8 +467,14 @@
 -(void)passHueValue:(CGFloat)hueValue {
     
     NSLog(@"This is the hue value %f", hueValue);
+    self.currentHue = hueValue;
+    self.filterView.backgroundColor = [UIColor colorWithHue:hueValue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
     
-    self.filterView.backgroundColor = [UIColor colorWithHue:hueValue saturation:1.0 brightness:1.0 alpha:1.0];
+}
+
+-(void)isHueSelected:(BOOL)selected {
+    
+    self.isHueSelected = selected;
     
 }
 /*

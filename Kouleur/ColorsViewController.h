@@ -14,6 +14,7 @@
 
 -(void)passColor:(NSString *)hue;
 -(void)passHueValue:(CGFloat)hueValue;
+-(void)isHueSelected:(BOOL)selected;
 
 @end
 
@@ -21,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) id<PassColorDelegate>delegate;
 @property int *huee;
+- (IBAction)cancelButtonPressed:(id)sender;
 
 @end
