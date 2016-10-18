@@ -52,6 +52,8 @@
 @property (strong, nonatomic) GPUImageRGBFilter *rgbFilter;
 @property (strong, nonatomic) GPUImageOpacityFilter *opacityFilter;
 @property (strong, nonatomic) GPUImagePicture *fx_image;
+@property (strong, nonatomic) GPUImageHueFilter *hueFilter;
+@property (strong, nonatomic) GPUImageMonochromeFilter *monochromeFilter;
 
 
 @property (nonatomic, strong) HUMSlider *brightnessSlider;
@@ -59,8 +61,10 @@
 @property (nonatomic, strong) HUMSlider *saturationSlider;
 @property (weak, nonatomic) IBOutlet UIView *filterView;
 @property (nonatomic) NSString *filterName;
+@property (strong, nonatomic) NSString *currentFilter;
 
 @property (strong, nonatomic) UIColor* filterColor;
+@property (strong, nonatomic) UIColor* gpuColor;
 
 @property (nonatomic) CGColorRef colors;
 

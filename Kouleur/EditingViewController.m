@@ -13,23 +13,45 @@
 
 @interface EditingViewController ()
 
+
 @end
 
+static NSString *currentWhitePoint = @"WhitePoint";
+static NSString *currentMonochrome = @"Monochrome";
+static NSString *currentFill = @"Fill";
+
 @implementation EditingViewController
-@synthesize filtersSegmentedControl, bottomSegmentedControl, brightnessView, opacityView, saturationView, brightnessSlider, saturationSlider, opacitySlider, currentHue, filter, filterColor, colors, brightnessFilter, fx_image, saturationFilter, opacityFilter, inputImage;
+@synthesize filtersSegmentedControl, bottomSegmentedControl, brightnessView, opacityView, saturationView, brightnessSlider, saturationSlider, opacitySlider, currentHue, filter, filterColor, colors, brightnessFilter, fx_image, saturationFilter, opacityFilter, inputImage, newwImage, hueFilter, rgbFilter, gpuColor, monochromeFilter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.currentFilter = currentWhitePoint;
     self.isHueSelected = NO;
     self.filterIsActive = YES;
     self.filterView.hidden = YES;
     self.filterName = @"CIWhitePointAdjust";
+    gpuColor = [[UIColor alloc]init];
     
     brightnessFilter = [[GPUImageBrightnessFilter alloc] init];
     saturationFilter = [[GPUImageSaturationFilter alloc]init];
     opacityFilter = [[GPUImageOpacityFilter alloc] init];
+    hueFilter = [[GPUImageHueFilter alloc]init];
+    rgbFilter = [[GPUImageRGBFilter alloc]init];
+    monochromeFilter = [[GPUImageMonochromeFilter alloc]init];
+    [hueFilter setHue:5.0];
+    self.imageView.image = self.editingImage;
+    inputImage = self.imageView.image;
     
-    inputImage = self.editingImage;
+    newwImage = inputImage;
+    fx_image = [[GPUImagePicture alloc] initWithImage:inputImage];
+    [fx_image addTarget:rgbFilter];
+    [rgbFilter addTarget:brightnessFilter];
+    [brightnessFilter addTarget:saturationFilter];
+    [saturationFilter addTarget:opacityFilter];
+    [opacityFilter useNextFrameForImageCapture];
+    [fx_image processImage];
+    
     
     // Do any additional setup after loading the view.
     [self createEditingControls];
@@ -37,6 +59,8 @@
     [self createSaturation];
     [self createBrightness];
     //[self createFilter];
+    
+    
     
 }
 
@@ -46,10 +70,53 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-    self.imageView.image = self.editingImage;
-    self.editingImageView.image = self.editingImage;
-    self.filterView.backgroundColor = [UIColor colorWithHue:0.350000 saturation:1.0 brightness:1.0 alpha:1.0];
-    self.filterColor = [UIColor colorWithHue:currentHue saturation:1.0 brightness:1.0 alpha:0.7];
+    //self.imageView.image = self.editingImage;
+    //self.editingImageView.image = self.editingImage;
+    //self.filterView.backgroundColor = [UIColor colorWithHue:0.350000 saturation:1.0 brightness:1.0 alpha:1.0];
+    //self.filterColor = [UIColor colorWithHue:currentHue saturation:1.0 brightness:1.0 alpha:0.7];
+    
+}
+
+-(void)ColorFilter:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue{
+    self.currentFilter = currentWhitePoint;
+    [rgbFilter setRed:red];
+    [rgbFilter setGreen:green];
+    [rgbFilter setBlue:blue];
+    
+    
+    [fx_image removeTarget:monochromeFilter];
+    [monochromeFilter removeTarget:brightnessFilter];
+    [brightnessFilter removeTarget:saturationFilter];
+    
+    [fx_image addTarget:rgbFilter];
+    [rgbFilter addTarget:brightnessFilter];
+    [brightnessFilter addTarget:saturationFilter];
+    [saturationFilter addTarget:opacityFilter];
+    [opacityFilter useNextFrameForImageCapture];
+    [fx_image processImage];
+    
+    
+}
+-(void)MonchromeFilter:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue Intensity:(CGFloat)intensity {
+    
+    
+    
+    self.currentFilter = currentMonochrome;
+    
+    [monochromeFilter setIntensity:intensity];
+    [monochromeFilter setColorRed:red green:green blue:blue];
+    
+    [fx_image removeTarget:rgbFilter];
+    [rgbFilter removeTarget:brightnessFilter];
+    [brightnessFilter removeTarget:saturationFilter];
+    [saturationFilter removeTarget:opacityFilter];
+    
+    [fx_image addTarget:monochromeFilter];
+    [monochromeFilter addTarget:brightnessFilter];
+    [brightnessFilter addTarget:saturationFilter];
+    
+    [saturationFilter useNextFrameForImageCapture];
+    [fx_image processImage];
     
 }
 
@@ -145,10 +212,12 @@
     filtersSegmentedControl.selectionIndicatorHeight = 1.0f;
     filtersSegmentedControl.backgroundColor = [UIColor whiteColor];
     filtersSegmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+    filtersSegmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-UltraLight" size:17]};
     filtersSegmentedControl.selectionIndicatorColor = [UIColor whiteColor];
     filtersSegmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     filtersSegmentedControl.selectedSegmentIndex = HMSegmentedControlNoSegment;
-    self.filtersSegmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor]};
+    self.filtersSegmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor flatWatermelonColor]};
+    filtersSegmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Light" size:17]};
     filtersSegmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     filtersSegmentedControl.shouldAnimateUserSelection = YES;
     filtersSegmentedControl.tag = 2;
@@ -168,8 +237,10 @@
     bottomSegmentedControl.selectionIndicatorHeight = 1.0f;
     bottomSegmentedControl.backgroundColor = [UIColor whiteColor];
     bottomSegmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+    bottomSegmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"AvenirNext-UltraLight" size:17]};
+
     self.bottomSegmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor]};
-    
+    bottomSegmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Light" size:17]};
     bottomSegmentedControl.selectionIndicatorColor = [UIColor whiteColor];
     bottomSegmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     bottomSegmentedControl.selectedSegmentIndex = HMSegmentedControlNoSegment;
@@ -241,33 +312,48 @@
 -(void)filterSegmentedControl:(id)sender{
 
     if (self.isHueSelected == NO) {
-        //self.filterView.hidden = YES;
+        self.filterView.hidden = YES;
     } else {
     
         switch (self.filtersSegmentedControl.selectedSegmentIndex) {
             case 0:
                 self.filterIsActive = YES;
                 self.filterName = @"CIWhitePointAdjust";
-                [self createFilter];
-                //self.filterView.hidden = YES;
+                self.currentFilter = currentWhitePoint;
+                gpuColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+                CGFloat red, green, blue, alpha;
+                [gpuColor getRed:&red green:&green blue:&blue alpha:&alpha];
+                [rgbFilter setRed:red];
+                [rgbFilter setGreen:green];
+                [rgbFilter setBlue:blue];
+                [self ColorFilter:red Green:green Blue:blue];
+                //[self createFilter];
+                self.filterView.hidden = YES;
                 NSLog(@"White Point");
                 break;
             case 1:
                 self.filterIsActive = YES;
                 self.filterName = @"CIColorMonochrome";
-                [self createFilter];
-                //self.filterView.hidden = YES;
+                self.currentFilter = currentMonochrome;
+                gpuColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:1.0];
+                CGFloat red2, green2, blue2, alpha2;
+                [gpuColor getRed:&red2 green:&green2 blue:&blue2 alpha:&alpha2];
+                [rgbFilter setRed:red2];
+                [rgbFilter setGreen:green2];
+                [rgbFilter setBlue:blue2];
+                [self MonchromeFilter:red2 Green:green2 Blue:blue2 Intensity:self.opacitySlider.value];
+                self.filterView.hidden = YES;
                 NSLog(@"Monochrome");
                 break;
             case 2:
                 self.filterIsActive = NO;
-                //self.filterView.hidden = NO;
+                self.filterView.hidden = NO;
                 [self removeFilter];
                 NSLog(@"Fill");
                 break;
             case 3:
                 self.filterIsActive = NO;
-                //self.filterView.hidden = YES;
+                self.filterView.hidden = YES;
                 [self removeFilter];
                 NSLog(@"None");
                 break;
@@ -291,9 +377,9 @@
     
     brightnessView = [[UIView alloc]initWithFrame:filtersSegmentedControl.bounds];
     brightnessSlider = [[HUMSlider alloc]init];
-    [brightnessSlider setMinimumValue:0.2f];
+    [brightnessSlider setMinimumValue:-1.0f];
     [brightnessSlider setMaximumValue:1.0f];
-    [brightnessSlider setValue:0.6f];
+    [brightnessSlider setValue:0.0f];
     brightnessSlider.continuous = YES;
     
     brightnessSlider.sectionCount = 11;
@@ -301,10 +387,6 @@
     brightnessSlider.maximumTrackTintColor = [UIColor clearColor];
     brightnessSlider.minimumTrackTintColor = [UIColor clearColor];
     
-    
-    //NSArray *colors;
-    //colors = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:0.0f alpha:opacitySlider.value], [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:1.0f alpha:opacitySlider.value], nil];
-    //brightnessView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:CGRectMake(0, 0, self.brightnessView.frame.size.width, self.brightnessView.frame.size.height) andColors:colors];
     
     [brightnessView addSubview:brightnessSlider];
     brightnessSlider.frame = CGRectMake(50, (filtersSegmentedControl.frame.size.height/5), sliderWidth, sliderHeight);
@@ -335,11 +417,6 @@
     opacitySlider.maximumTrackTintColor = [UIColor clearColor];
     opacitySlider.minimumTrackTintColor = [UIColor clearColor];
     
-    
-    //NSArray *colors;
-    //colors = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:0], [UIColor colorWithHue:_hueInt/360.0 saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:1], nil];
-    
-    //opacityView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:CGRectMake(0, 0, self.opacityView.frame.size.width, self.opacityView.frame.size.height) andColors:colors];
     
     opacityView.backgroundColor = [UIColor whiteColor];
     [opacityView addSubview:opacitySlider];
@@ -374,11 +451,6 @@
     [saturationSlider setMinimumTrackTintColor:[UIColor clearColor]];
     [saturationSlider setMaximumTrackTintColor:[UIColor clearColor]];
     
-    //NSArray *colorsSaturation;
-    //colorsSaturation = [[NSArray alloc]initWithObjects:[UIColor colorWithHue:_hueInt/360.0 saturation:0/100.0 brightness:self.brightnessSlider.value alpha:1], [UIColor colorWithHue:_hueInt/360.0 saturation:100.0/100.0 brightness:self.brightnessSlider.value alpha:1], nil];
-    
-    //saturationView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:CGRectMake(0, 0, self.saturationView.frame.size.width, self.saturationView.frame.size.height) andColors:colorsSaturation];
-    
     
     saturationSlider.continuous = YES;
     saturationView.backgroundColor = [UIColor whiteColor];
@@ -396,8 +468,8 @@
 #pragma mark - sliderActions
 
 -(void)brightnessSliderChanged:(id)sender{
-//    
-//    //CGFloat sliderValue = self.brightnessSlider.value;
+    
+//    CGFloat sliderValue = self.brightnessSlider.value;
 //    self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
 //    colors = [[UIColor colorWithHue:currentHue saturation:1.0 brightness:self.brightnessSlider.value alpha:1.0] CGColor];
 //    [filter setValue:[CIColor colorWithCGColor:colors] forKey:@"inputColor"];
@@ -407,13 +479,34 @@
 //    UIImage* img = [[UIImage alloc] initWithCGImage:imgRef];
 //    CGImageRelease(imgRef);
 //    
+//    
+//    
 //    self.imageView.image = img;
-        //[self createFilter];
+//        [self createFilter];
     
     if (self.filterIsActive == YES) {
-        self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
-        NSLog(@"Brightness valueeee%f", self.brightnessSlider.value);
-        [self createFilter];
+        
+        if (self.currentFilter == currentMonochrome) {
+            
+            [brightnessFilter setBrightness:self.brightnessSlider.value];
+            [saturationFilter useNextFrameForImageCapture];
+            [fx_image processImage];
+            UIImage *final_image = [saturationFilter imageFromCurrentFramebuffer];
+            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+            self.imageView.image = final_image;
+            
+        } else {
+        
+            [brightnessFilter setBrightness:self.brightnessSlider.value];
+            [opacityFilter useNextFrameForImageCapture];
+            [fx_image processImage];
+            UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
+            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+            self.imageView.image = final_image;
+        
+        }
     } else {
     
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -422,14 +515,34 @@
         
         });
     }
+    
+    
     
 }
 
 -(void)opacitySliderChanged:(id)sender{
-    //[self createFilter];
     if (self.filterIsActive == YES) {
-        self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
-        [self createFilter];
+        if (self.currentFilter == currentMonochrome) {
+            
+            [monochromeFilter setIntensity:self.opacitySlider.value];
+            [monochromeFilter useNextFrameForImageCapture];
+            [fx_image processImage];
+            UIImage *final_image = [monochromeFilter imageFromCurrentFramebuffer];
+            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+            self.imageView.image = final_image;
+            
+        } else {
+        
+            [opacityFilter setOpacity:[(UISlider *)sender value]];
+            [opacityFilter useNextFrameForImageCapture];
+            [fx_image processImage];
+            UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
+            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+            self.imageView.image = final_image;
+        }
+        
     } else {
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -440,12 +553,35 @@
     }
 
     
+    
+    
 }
 -(void)saturationSliderChanged:(id)sender{
-    //[self createFilter];
     if (self.filterIsActive == YES) {
-        self.filterColor = [UIColor colorWithHue:currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
-        [self createFilter];
+        if (self.currentFilter == currentMonochrome) {
+            
+            [saturationFilter setSaturation:self.saturationSlider.value];
+            [saturationFilter useNextFrameForImageCapture];
+            [fx_image processImage];
+            UIImage *final_image = [saturationFilter imageFromCurrentFramebuffer];
+            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+            self.imageView.image = final_image;
+
+            
+        } else {
+        
+            [saturationFilter setSaturation:self.saturationSlider.value];
+            [opacityFilter useNextFrameForImageCapture];
+            [fx_image processImage];
+            UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
+            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+            //CGFloat originalScale = self.imageView.image.scale;
+            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:    originalOrientation];
+            self.imageView.image = final_image;
+        
+        }
+        
     } else {
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -455,6 +591,9 @@
         });
     }
 
+    
+    
+    
 }           
 
 #pragma mark - PassColorDelegate Methods
@@ -466,11 +605,45 @@
 }
 -(void)passHueValue:(CGFloat)hueValue {
     
-    NSLog(@"This is the hue value %f", hueValue);
+    NSLog(@"This is the hue value %f", hueValue * 360.0);
     self.currentHue = hueValue;
     self.filterView.backgroundColor = [UIColor colorWithHue:hueValue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
     
+    
+    gpuColor = [UIColor colorWithHue:hueValue saturation:1.0 brightness:1.0 alpha:1.0];
+    CGFloat red, green, blue, alpha;
+    
+    [gpuColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    [rgbFilter setRed:red];
+    [rgbFilter setGreen:green];
+    [rgbFilter setBlue:blue];
+    if (self.currentFilter == currentWhitePoint) {
+        
+        [self ColorFilter:red Green:green Blue:blue];
+        UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
+        UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+        final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+        self.imageView.image = final_image;
+        
+    } else if (self.currentFilter == currentMonochrome) {
+        [self MonchromeFilter:red Green:green Blue:blue Intensity:self.opacitySlider.value];
+        UIImage *final_image = [monochromeFilter imageFromCurrentFramebuffer];
+        UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+        final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+        self.imageView.image = final_image;
+    }
+//    [opacityFilter useNextFrameForImageCapture];
+//    [fx_image processImage];
+    
+    
 }
+
+-(void)getrgbFromHue: (CGFloat)red :(CGFloat)green :(CGFloat)blue {
+    
+    
+    
+}
+
 
 -(void)isHueSelected:(BOOL)selected {
     
