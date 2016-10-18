@@ -653,15 +653,44 @@ static NSString *currentFill = @"Fill";
     self.isHueSelected = selected;
     
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
+    if ([segue.identifier  isEqual: @"toSharePage"]) {
+        UIImage *lastImage = self.imageView.image;
+        
+            
+            UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, 0);
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [self.imageView.layer renderInContext:context];
+            UIImage *images = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        self.imageView.image = images;
+        
+            //lastImage = images;
+            UINavigationController *nav = segue.destinationViewController;
+            ShareViewController *shareVC = (ShareViewController *)nav.topViewController;
+            shareVC.finalImage = images;
+        
+            NSLog(@"image was sent from editing vc");
+            if (images != nil) {
+                NSLog(@"YES!");
+            }
+            
+            
+        
+    }
+    
+    
+    
     // Pass the selected object to the new view controller.
 }
-*/
+
+
+
 
 - (IBAction)backToCamera:(id)sender {
     

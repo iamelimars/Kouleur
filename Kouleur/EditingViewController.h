@@ -14,6 +14,7 @@
 #import "ColorsViewController.h"
 #import <ChameleonFramework/Chameleon.h>
 #import "GPUImage.h"
+#import "ShareViewController.h"
 
 
 

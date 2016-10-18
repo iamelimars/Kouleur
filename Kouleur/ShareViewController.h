@@ -11,5 +11,6 @@
 @interface ShareViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backToEditingVC;
 - (IBAction)backButtonPressed:(id)sender;
+@property (strong, nonatomic) UIImage *finalImage;
 
 @end

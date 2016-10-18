@@ -14,6 +14,8 @@
 
 @implementation ShareViewController
 
+@synthesize finalImage;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -24,13 +26,90 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+    if (finalImage == nil) {
+        NSLog(@"No Image Was Sent");
+        
+    } else {
+        
+        NSLog(@"image sent was a success");
+        
+    }
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        
+        [self shareToTwitter];
+        
+    }else if (indexPath.section == 0 && indexPath.row == 1){
+        
+        [self shareToFacebook];
+        
+    }else if (indexPath.section == 0 && indexPath.row == 2){
+        
+        [self shareToInstagram];
+        
+    }else if (indexPath.section == 1 && indexPath.row == 0){
+        
+        [self saveToCameraRoll];
+        
+    }else if (indexPath.section == 2 && indexPath.row == 0){
+        
+        [self sendAsMessage];
+        
+    }else if (indexPath.section == 2 && indexPath.row == 1){
+        
+        [self sendAsEmail];
+        
+    }
+    
+}
 
+#pragma mark - Share Methods
+
+-(void)shareToTwitter {
+    
+    NSLog(@"twitter");
+    
+}
+-(void)shareToFacebook {
+    
+    NSLog(@"facebook");
+    
+}
+-(void)shareToInstagram {
+    
+    NSLog(@"instagram");
+
+}
+-(void)saveToCameraRoll {
+    
+    NSLog(@"Camera Roll");
+
+    
+}
+-(void)sendAsMessage {
+    
+    NSLog(@"message");
+
+    
+}
+-(void)sendAsEmail {
+    
+    NSLog(@"email");
+
+    
+}
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections
 //    return 0;
