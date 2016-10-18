@@ -97,6 +97,7 @@ static NSString *currentFill = @"Fill";
     
     
 }
+/*
 -(void)MonchromeFilter:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue Intensity:(CGFloat)intensity {
     
     
@@ -119,7 +120,7 @@ static NSString *currentFill = @"Fill";
     [fx_image processImage];
     
 }
-
+*/
 -(void)createFilter {
     self.editingImageView.image = self.editingImage;
     
@@ -201,7 +202,7 @@ static NSString *currentFill = @"Fill";
 
 -(void)createEditingControls {
     
-    filtersSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"White Point", @"Monochrome", @"Fill", @"None"]];
+    filtersSegmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"White Point", @"Fill", @"None"]];
     //[segmentedControl3 setFrame:CGRectMake(0, viewHeight-120, viewWidth, 60)];
     [filtersSegmentedControl setFrame:CGRectMake(self.bottomView.frame.origin.x, 0, self.bottomView.frame.size.width, self.bottomView.frame.size.height)];
     
@@ -331,27 +332,28 @@ static NSString *currentFill = @"Fill";
                 self.filterView.hidden = YES;
                 NSLog(@"White Point");
                 break;
+//            case 1:
+//                self.filterIsActive = YES;
+//                self.filterName = @"CIColorMonochrome";
+//                self.currentFilter = currentMonochrome;
+//                gpuColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:1.0];
+//                CGFloat red2, green2, blue2, alpha2;
+//                [gpuColor getRed:&red2 green:&green2 blue:&blue2 alpha:&alpha2];
+//                [rgbFilter setRed:red2];
+//                [rgbFilter setGreen:green2];
+//                [rgbFilter setBlue:blue2];
+//                [self MonchromeFilter:red2 Green:green2 Blue:blue2 Intensity:self.opacitySlider.value];
+//                self.filterView.hidden = YES;
+//                NSLog(@"Monochrome");
+//                break;
+                
             case 1:
-                self.filterIsActive = YES;
-                self.filterName = @"CIColorMonochrome";
-                self.currentFilter = currentMonochrome;
-                gpuColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:1.0];
-                CGFloat red2, green2, blue2, alpha2;
-                [gpuColor getRed:&red2 green:&green2 blue:&blue2 alpha:&alpha2];
-                [rgbFilter setRed:red2];
-                [rgbFilter setGreen:green2];
-                [rgbFilter setBlue:blue2];
-                [self MonchromeFilter:red2 Green:green2 Blue:blue2 Intensity:self.opacitySlider.value];
-                self.filterView.hidden = YES;
-                NSLog(@"Monochrome");
-                break;
-            case 2:
                 self.filterIsActive = NO;
                 self.filterView.hidden = NO;
                 [self removeFilter];
                 NSLog(@"Fill");
                 break;
-            case 3:
+            case 2:
                 self.filterIsActive = NO;
                 self.filterView.hidden = YES;
                 [self removeFilter];
@@ -486,17 +488,17 @@ static NSString *currentFill = @"Fill";
     
     if (self.filterIsActive == YES) {
         
-        if (self.currentFilter == currentMonochrome) {
-            
-            [brightnessFilter setBrightness:self.brightnessSlider.value];
-            [saturationFilter useNextFrameForImageCapture];
-            [fx_image processImage];
-            UIImage *final_image = [saturationFilter imageFromCurrentFramebuffer];
-            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
-            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
-            self.imageView.image = final_image;
-            
-        } else {
+//        if (self.currentFilter == currentMonochrome) {
+//            
+//            [brightnessFilter setBrightness:self.brightnessSlider.value];
+//            [saturationFilter useNextFrameForImageCapture];
+//            [fx_image processImage];
+//            UIImage *final_image = [saturationFilter imageFromCurrentFramebuffer];
+//            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+//            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+//            self.imageView.image = final_image;
+//            
+//        } else {
         
             [brightnessFilter setBrightness:self.brightnessSlider.value];
             [opacityFilter useNextFrameForImageCapture];
@@ -506,7 +508,7 @@ static NSString *currentFill = @"Fill";
             final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
             self.imageView.image = final_image;
         
-        }
+//        }
     } else {
     
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -522,17 +524,17 @@ static NSString *currentFill = @"Fill";
 
 -(void)opacitySliderChanged:(id)sender{
     if (self.filterIsActive == YES) {
-        if (self.currentFilter == currentMonochrome) {
-            
-            [monochromeFilter setIntensity:self.opacitySlider.value];
-            [monochromeFilter useNextFrameForImageCapture];
-            [fx_image processImage];
-            UIImage *final_image = [monochromeFilter imageFromCurrentFramebuffer];
-            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
-            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
-            self.imageView.image = final_image;
-            
-        } else {
+//        if (self.currentFilter == currentMonochrome) {
+//            
+//            [monochromeFilter setIntensity:self.opacitySlider.value];
+//            [monochromeFilter useNextFrameForImageCapture];
+//            [fx_image processImage];
+//            UIImage *final_image = [monochromeFilter imageFromCurrentFramebuffer];
+//            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+//            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+//            self.imageView.image = final_image;
+//            
+//        } else {
         
             [opacityFilter setOpacity:[(UISlider *)sender value]];
             [opacityFilter useNextFrameForImageCapture];
@@ -541,7 +543,7 @@ static NSString *currentFill = @"Fill";
             UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
             final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
             self.imageView.image = final_image;
-        }
+//        }
         
     } else {
         
@@ -558,18 +560,18 @@ static NSString *currentFill = @"Fill";
 }
 -(void)saturationSliderChanged:(id)sender{
     if (self.filterIsActive == YES) {
-        if (self.currentFilter == currentMonochrome) {
-            
-            [saturationFilter setSaturation:self.saturationSlider.value];
-            [saturationFilter useNextFrameForImageCapture];
-            [fx_image processImage];
-            UIImage *final_image = [saturationFilter imageFromCurrentFramebuffer];
-            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
-            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
-            self.imageView.image = final_image;
-
-            
-        } else {
+//        if (self.currentFilter == currentMonochrome) {
+//            
+//            [saturationFilter setSaturation:self.saturationSlider.value];
+//            [saturationFilter useNextFrameForImageCapture];
+//            [fx_image processImage];
+//            UIImage *final_image = [saturationFilter imageFromCurrentFramebuffer];
+//            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+//            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+//            self.imageView.image = final_image;
+//
+//            
+//        } else {
         
             [saturationFilter setSaturation:self.saturationSlider.value];
             [opacityFilter useNextFrameForImageCapture];
@@ -580,7 +582,7 @@ static NSString *currentFill = @"Fill";
             final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:    originalOrientation];
             self.imageView.image = final_image;
         
-        }
+//        }
         
     } else {
         
@@ -625,13 +627,14 @@ static NSString *currentFill = @"Fill";
         final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
         self.imageView.image = final_image;
         
-    } else if (self.currentFilter == currentMonochrome) {
-        [self MonchromeFilter:red Green:green Blue:blue Intensity:self.opacitySlider.value];
-        UIImage *final_image = [monochromeFilter imageFromCurrentFramebuffer];
-        UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
-        final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
-        self.imageView.image = final_image;
     }
+//    else if (self.currentFilter == currentMonochrome) {
+//        [self MonchromeFilter:red Green:green Blue:blue Intensity:self.opacitySlider.value];
+//        UIImage *final_image = [monochromeFilter imageFromCurrentFramebuffer];
+//        UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+//        final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+//        self.imageView.image = final_image;
+//    }
 //    [opacityFilter useNextFrameForImageCapture];
 //    [fx_image processImage];
     
@@ -660,4 +663,9 @@ static NSString *currentFill = @"Fill";
 }
 */
 
+- (IBAction)backToCamera:(id)sender {
+}
+
+- (IBAction)toSharePage:(id)sender {
+}
 @end

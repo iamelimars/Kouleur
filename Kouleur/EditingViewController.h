@@ -38,6 +38,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *categoriesView;
+- (IBAction)backToCamera:(id)sender;
+- (IBAction)toSharePage:(id)sender;
 
 @property (nonatomic, weak) CIFilter *colorMonochrome;
 @property (nonatomic, weak) CIFilter *WhitePointAdjust;

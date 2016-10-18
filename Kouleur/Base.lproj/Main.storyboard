@@ -375,6 +375,9 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-yQ-O2n">
                                         <rect key="frame" x="0.0" y="0.0" width="181" height="35"/>
+                                        <connections>
+                                            <action selector="backToCamera:" destination="gE9-To-5tA" eventType="touchUpInside" id="tCa-sr-cWq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -400,6 +403,9 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVK-p8-eLH">
                                         <rect key="frame" x="0.0" y="0.0" width="181" height="35"/>
+                                        <connections>
+                                            <action selector="toSharePage:" destination="gE9-To-5tA" eventType="touchUpInside" id="0Km-6i-iUe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -614,7 +620,7 @@
         <image name="slide Arrow" width="46" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NWn-sQ-XiC"/>
+        <segue reference="5SW-Iq-Ue6"/>
         <segue reference="tPx-pv-Y0D"/>
     </inferredMetricsTieBreakers>
 </document>
