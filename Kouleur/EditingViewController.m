@@ -664,6 +664,9 @@ static NSString *currentFill = @"Fill";
 */
 
 - (IBAction)backToCamera:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (IBAction)toSharePage:(id)sender {

@@ -31,6 +31,7 @@
 		8896D6681DB55D0B000B53F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6671DB55D0B000B53F0 /* OpenGLES.framework */; };
 		8896D66A1DB55D15000B53F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D6691DB55D15000B53F0 /* AVFoundation.framework */; };
 		8896D66C1DB55D1A000B53F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8896D66B1DB55D1A000B53F0 /* QuartzCore.framework */; };
+		8896D6741DB5F6FD000B53F0 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8896D6731DB5F6FC000B53F0 /* ShareViewController.m */; };
 		92DDC49F7992809A8294DAEA /* Pods_Kouleur.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53D1091FBADC1CA1B296EF6 /* Pods_Kouleur.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,8 @@
 		8896D6671DB55D0B000B53F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8896D6691DB55D15000B53F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8896D66B1DB55D1A000B53F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8896D6721DB5F6FC000B53F0 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		8896D6731DB5F6FC000B53F0 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		C09C2A2F1EE2C886D5D064BF /* Pods-Kouleur.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kouleur.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kouleur/Pods-Kouleur.debug.xcconfig"; sourceTree = "<group>"; };
 		D53D1091FBADC1CA1B296EF6 /* Pods_Kouleur.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kouleur.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +217,7 @@
 				884B9AA61DA41F1E00F62390 /* ConfirmViewController */,
 				884B9AAD1DA43EEB00F62390 /* EditingViewController */,
 				88633ABE1DAF15080097B617 /* ColorsViewController */,
+				8896D6751DB5F702000B53F0 /* ShareViewController */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -307,6 +311,15 @@
 				887AB5FA1DB0683900A3026C /* ColorsCollectionViewCell.m */,
 			);
 			name = ColorsCell;
+			sourceTree = "<group>";
+		};
+		8896D6751DB5F702000B53F0 /* ShareViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8896D6721DB5F6FC000B53F0 /* ShareViewController.h */,
+				8896D6731DB5F6FC000B53F0 /* ShareViewController.m */,
+			);
+			name = ShareViewController;
 			sourceTree = "<group>";
 		};
 		E054857B1C7621F244C56003 /* Frameworks */ = {
@@ -518,6 +531,7 @@
 				884B9AA91DA41F7900F62390 /* roundedButton.m in Sources */,
 				880F6B501D8060E000196090 /* AppDelegate.m in Sources */,
 				884B9AAC1DA43EDC00F62390 /* EditingViewController.m in Sources */,
+				8896D6741DB5F6FD000B53F0 /* ShareViewController.m in Sources */,
 				880F6B4D1D8060E000196090 /* main.m in Sources */,
 				884B9A9C1DA40E4100F62390 /* PhotosViewController.m in Sources */,
 				88633ABD1DAF14F80097B617 /* ColorsViewController.m in Sources */,

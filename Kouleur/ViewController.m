@@ -88,6 +88,19 @@ const float squareLength = 80.0f;
     
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    self.yesButton.hidden = YES;
+    self.cancelButton.hidden = YES;
+    self.selectPhotoButton.hidden = NO;
+    self.cameraButton.hidden = NO;
+    self.flipCameraButton.hidden = NO;
+    self.flashButton.hidden = NO;
+    self.cameraButtonView.hidden = NO;
+    self.imagePreview.image = nil;
+    
+}
+
 -(void)viewDidAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES];
     self.yesButton.hidden = YES;
@@ -97,6 +110,7 @@ const float squareLength = 80.0f;
     [self setImagePickerButton];
     focusSquare = [[UIView alloc]init];
     
+
     
 }
 -(void)viewDidDisappear:(BOOL)animated {
