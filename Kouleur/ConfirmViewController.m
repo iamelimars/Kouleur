@@ -22,7 +22,13 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     
-    [self updateStaticImage];
+    if (self.asset == nil) {
+        NSLog(@"no asset");
+    } else {
+        
+        
+        [self updateStaticImage];
+    }
     
 }
 -(void)dealloc {
@@ -49,7 +55,9 @@
         
         // Check if the request was successful.
         if (!result) {
+            NSLog(@"noImage");
             return;
+            
         }
         
         // Show the UIImageView and use it to display the requested image.
@@ -62,6 +70,29 @@
     CGSize targetSize = CGSizeMake(CGRectGetWidth(self.imageView.bounds) * scale, CGRectGetHeight(self.imageView.bounds) * scale);
     return targetSize;
 }
+
+#pragma mark - PHPhotoLibraryChangeObserver
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+    // Call might come on any background queue. Re-dispatch to the main queue to handle it.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Check if there are changes to the asset we're displaying.
+        PHObjectChangeDetails *changeDetails = [changeInstance changeDetailsForObject:self.asset];
+        if (changeDetails == nil) {
+            return;
+        }
+        
+        // Get the updated asset.
+        self.asset = [changeDetails objectAfterChanges];
+        
+        // If the asset's content changed, update the image and stop any video playback.
+        if ([changeDetails assetContentChanged]) {
+            [self updateStaticImage];
+            
+        }
+    });
+}
+
 
 #pragma mark - Navigation
 

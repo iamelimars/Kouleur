@@ -9,7 +9,7 @@
 #import "cameraFocusSquaree.h"
 #import <QuartzCore/QuartzCore.h>
 
-const float squareLength = 80.0f;
+//const float squareLength = 80.0f;
 
 @implementation cameraFocusSquaree
 

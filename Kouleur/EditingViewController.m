@@ -350,6 +350,7 @@ static NSString *currentFill = @"Fill";
             case 1:
                 self.filterIsActive = NO;
                 self.filterView.hidden = NO;
+                self.currentFilter = currentFill;
                 [self removeFilter];
                 NSLog(@"Fill");
                 break;
@@ -609,7 +610,7 @@ static NSString *currentFill = @"Fill";
     
     NSLog(@"This is the hue value %f", hueValue * 360.0);
     self.currentHue = hueValue;
-    self.filterView.backgroundColor = [UIColor colorWithHue:hueValue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+    
     
     
     gpuColor = [UIColor colorWithHue:hueValue saturation:1.0 brightness:1.0 alpha:1.0];
@@ -626,6 +627,23 @@ static NSString *currentFill = @"Fill";
         UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
         final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
         self.imageView.image = final_image;
+        self.filtersSegmentedControl.hidden = NO;
+        saturationView.hidden = YES;
+        opacityView.hidden = YES;
+        brightnessView.hidden = YES;
+        [self.bottomSegmentedControl setSelectedSegmentIndex:0 animated:YES];
+        [self.filtersSegmentedControl setSelectedSegmentIndex:0 animated:YES];
+        
+    } else if (self.currentFilter == currentFill) {
+        
+        
+        self.filterView.backgroundColor = [UIColor colorWithHue:hueValue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
+        self.filtersSegmentedControl.hidden = NO;
+        saturationView.hidden = YES;
+        opacityView.hidden = YES;
+        brightnessView.hidden = YES;
+        [self.bottomSegmentedControl setSelectedSegmentIndex:0 animated:YES];
+        [self.filtersSegmentedControl setSelectedSegmentIndex:1 animated:YES];
         
     }
 //    else if (self.currentFilter == currentMonochrome) {
@@ -661,7 +679,28 @@ static NSString *currentFill = @"Fill";
     // Get the new view controller using [segue destinationViewController].
     if ([segue.identifier  isEqual: @"toSharePage"]) {
         UIImage *lastImage = self.imageView.image;
-        
+        if (self.filterIsActive == NO) {
+            [self.imageView addSubview:self.filterView];
+            UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, 0);
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [self.imageView.layer renderInContext:context];
+            UIImage *images = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            self.imageView.image = images;
+            
+            //lastImage = images;
+            UINavigationController *nav = segue.destinationViewController;
+            ShareViewController *shareVC = (ShareViewController *)nav.topViewController;
+            shareVC.finalImage = images;
+            
+            NSLog(@"image was sent from editing vc");
+            if (images != nil) {
+                NSLog(@"YES!");
+            }
+            [self.filterView removeFromSuperview];
+
+            
+        }else {
             
             UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, 0);
             CGContextRef context = UIGraphicsGetCurrentContext();
@@ -681,7 +720,7 @@ static NSString *currentFill = @"Fill";
             }
             
             
-        
+        }
     }
     
     

@@ -8,6 +8,7 @@ PODS:
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.4.2):
     - MZAppearance
+  - RKDropdownAlert (0.3.0)
 
 DEPENDENCIES:
   - ChameleonFramework
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - HMSegmentedControl
   - HUMSlider
   - MZFormSheetPresentationController
+  - RKDropdownAlert
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
@@ -23,5 +25,6 @@ SPEC CHECKSUMS:
   HUMSlider: 02b165c6be569b2cf87626fcc371a7420425efcf
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: c1dc3bce639d2393b3cc416fcb6e050eb5bca062
+  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
 
 COCOAPODS: 0.39.0

@@ -12,8 +12,10 @@
 #import <CoreMedia/CoreMedia.h>
 #import <ImageIO/ImageIO.h>
 #import <QuartzCore/QuartzCore.h>
-#import "cameraFocusSquaree.h"
+//#import "cameraFocusSquaree.h"
 #import "EditingViewController.h"
+#import "IntroViewController.h"
+#import "CamViewController.h"
 @import AVFoundation;
 @import AssetsLibrary;
 @import Photos;
@@ -45,7 +47,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 - (IBAction)flashButtonPressed:(id)sender;
 
-
+@property (strong, nonatomic) CamViewController *view2;
 
 @property (nonatomic) AVCaptureSession *session;
 @property (nonatomic) AVCaptureDevice *device;
@@ -55,7 +57,7 @@
 @property(nonatomic, retain) CALayer *rootLayer;
 @property(weak, nonatomic) NSString *cameraPosition;
 @property(nonatomic, assign) BOOL *imageTaken;
-@property(weak, nonatomic) cameraFocusSquaree *camFocus;
+//@property(weak, nonatomic) cameraFocusSquaree *camFocus;
 @property (nonatomic, retain) UIView *focusSquare;
 @property (nonatomic) CGPoint point;
 @property(weak, nonatomic) NSTimer *fadeInFocus;

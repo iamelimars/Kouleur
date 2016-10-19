@@ -18,86 +18,120 @@ const float squareLength = 80.0f;
 
 @implementation ViewController
 
-@synthesize cameraPosition, focusSquare;
+@synthesize cameraPosition, focusSquare, view2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self.introView setFrame:self.view.frame];
-    [self.cameraView setFrame:self.view.frame];
+    //self.MainScrollView.delegate = self;
+//    CGRect scrollFrame;
+//    scrollFrame.origin = self.MainScrollView.frame.origin;
+//    scrollFrame.size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2);
+//    self.MainScrollView.frame = scrollFrame;
+//    self.introView.frame = CGRectMake(self.introView.frame.origin.x, self.introView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+//    self.cameraView.frame = CGRectMake(self.introView.frame.origin.x, self.introView.frame.origin.y + self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+//    //[self.introView setFrame:self.view.frame];
+//    NSLog(@"%f", self.MainScrollView.frame.size.height);
+//    [self.cameraView setFrame:self.view.frame];
     [self setImagePickerButton];
     
-    self.cameraButton.layer.cornerRadius = self.cameraButton.frame.size.height/2;
-    self.cameraButtonView.layer.cornerRadius = self.cameraButtonView.frame.size.height/2;
-    self.yesButton.layer.cornerRadius = self.yesButton.frame.size.height/2;
-    self.cancelButton.layer.cornerRadius = self.cancelButton.frame.size.height/2;
-    self.selectPhotoButton.layer.cornerRadius = self.selectPhotoButton.frame.size.height/2;
-    self.selectPhotoButton.clipsToBounds = TRUE;
+    IntroViewController *view1 = [[IntroViewController alloc]initWithNibName:@"IntroViewController" bundle:nil];
+    view2 = [[CamViewController alloc]initWithNibName:@"CamViewController" bundle:nil];
+    
+
+    
+    //Add UIVC's to scroll view
+    [self addChildViewController:view1];
+    [self.MainScrollView addSubview:view1.view];
+    [view1 didMoveToParentViewController:self];
+    
+    [self addChildViewController:view2];
+    [self.MainScrollView addSubview:view2.view];
+    [view2 didMoveToParentViewController:self];
+    
+    [view2.selectButton addTarget:self action:@selector(toAlbumsView) forControlEvents:UIControlEventTouchDown];
+    [view2.flashCameraButton addTarget:self action:@selector(flashButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [view2.cancelPhotoButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [view2.yesPhotoButton addTarget:self action:@selector(yesButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [view2.cameraPhotoButton addTarget:self action:@selector(cameraButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    [view2.flipButton addTarget:self action:@selector(flipCameraPressed:) forControlEvents:UIControlEventTouchDown];
+
+    
+    
+    CGRect V2Frame = view2.view.frame;
+    V2Frame.origin.y = self.view.frame.size.height;
+    //V2Frame.origin.x = 0;
+    view2.view.frame = V2Frame;
+    
+    
+    //set scroll view content size
+    self.MainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2);
+
     
 }
--(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    
-    /*
-    NSLog(@"focus1");
-        CGPoint touchPoint = [recognizer locationInView:[recognizer.view superview]];
-        //focusLayer.frame = CGRectMake((touchPoint.x-25), (touchPoint.y-25), 50, 50);
-    
-        
-        if (self.imageTaken == NO ) {
-            
-            if ([_device isFocusPointOfInterestSupported]) {
-                NSError *error;
-                NSLog(@"focus2");
-                
-                if ([_device lockForConfiguration:&error]) {
-                    [_device setFocusPointOfInterest:touchPoint];
-                    [_device setExposurePointOfInterest:touchPoint];
-                    NSLog(@"focus3");
-                    
-                    [_device setFocusMode:AVCaptureFocusModeAutoFocus];
-                    if ([_device isExposureModeSupported:AVCaptureExposureModeAutoExpose]){
-                        [_device setExposureMode:AVCaptureExposureModeAutoExpose];
-                        self.point = [recognizer locationInView:self.cameraView];
-                        focusSquare.frame = CGRectMake(self.point.x, self.point.y, 30, 30);
-                        focusSquare.backgroundColor = [UIColor clearColor];
-                        focusSquare.layer.cornerRadius = 15;
-                        focusSquare.layer.borderWidth = 2.0;
-                        focusSquare.layer.borderColor = [UIColor whiteColor].CGColor;
-                        focusSquare.layer.masksToBounds = YES;
-                        focusSquare.alpha = 1.0;
-                        
-                        [self.cameraView addSubview:focusSquare];
-                        [self focusPoint];
-                        self.fadeInFocus = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
-                                                                          selector:@selector(focusFadeIn) userInfo:nil repeats:NO];
-                        
-                        
-                        NSLog(@"X location: %f", _point.x);
-                        NSLog(@"Y Location: %f",_point.y);
-                    }
-                    [_device unlockForConfiguration];
-                }
-            }else{
-                NSLog(@"Not Supported");
-                
-            }
-        }
-        
-        // NSLog(@"x = %f, y = %f", touchPoint.x, touchPoint.y);
-   */
-    
-}
+//-(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+//    
+//    /*
+//    NSLog(@"focus1");
+//        CGPoint touchPoint = [recognizer locationInView:[recognizer.view superview]];
+//        //focusLayer.frame = CGRectMake((touchPoint.x-25), (touchPoint.y-25), 50, 50);
+//    
+//        
+//        if (self.imageTaken == NO ) {
+//            
+//            if ([_device isFocusPointOfInterestSupported]) {
+//                NSError *error;
+//                NSLog(@"focus2");
+//                
+//                if ([_device lockForConfiguration:&error]) {
+//                    [_device setFocusPointOfInterest:touchPoint];
+//                    [_device setExposurePointOfInterest:touchPoint];
+//                    NSLog(@"focus3");
+//                    
+//                    [_device setFocusMode:AVCaptureFocusModeAutoFocus];
+//                    if ([_device isExposureModeSupported:AVCaptureExposureModeAutoExpose]){
+//                        [_device setExposureMode:AVCaptureExposureModeAutoExpose];
+//                        self.point = [recognizer locationInView:self.cameraView];
+//                        focusSquare.frame = CGRectMake(self.point.x, self.point.y, 30, 30);
+//                        focusSquare.backgroundColor = [UIColor clearColor];
+//                        focusSquare.layer.cornerRadius = 15;
+//                        focusSquare.layer.borderWidth = 2.0;
+//                        focusSquare.layer.borderColor = [UIColor whiteColor].CGColor;
+//                        focusSquare.layer.masksToBounds = YES;
+//                        focusSquare.alpha = 1.0;
+//                        
+//                        [self.cameraView addSubview:focusSquare];
+//                        [self focusPoint];
+//                        self.fadeInFocus = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
+//                                                                          selector:@selector(focusFadeIn) userInfo:nil repeats:NO];
+//                        
+//                        
+//                        NSLog(@"X location: %f", _point.x);
+//                        NSLog(@"Y Location: %f",_point.y);
+//                    }
+//                    [_device unlockForConfiguration];
+//                }
+//            }else{
+//                NSLog(@"Not Supported");
+//                
+//            }
+//        }
+//        
+//        // NSLog(@"x = %f, y = %f", touchPoint.x, touchPoint.y);
+//   */
+//    
+//}
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.yesButton.hidden = YES;
-    self.cancelButton.hidden = YES;
-    self.selectPhotoButton.hidden = NO;
-    self.cameraButton.hidden = NO;
-    self.flipCameraButton.hidden = NO;
-    self.flashButton.hidden = NO;
-    self.cameraButtonView.hidden = NO;
-    self.imagePreview.image = nil;
+    view2.yesPhotoButton.hidden = YES;
+    view2.cancelPhotoButton.hidden = YES;
+    view2.selectButton.hidden = NO;
+    view2.cameraPhotoButton.hidden = NO;
+    view2.flipButton.hidden = NO;
+    view2.flashCameraButton.hidden = NO;
+    view2.cameraButtonView.hidden = NO;
+    view2.imageViewPreview.image = nil;
     
 }
 
@@ -119,6 +153,12 @@ const float squareLength = 80.0f;
     [self.previewLayer removeFromSuperlayer];
     self.previewLayer = nil;
     self.session = nil;
+    
+}
+
+-(void)toAlbumsView{
+    
+    [self performSegueWithIdentifier:@"toAlbumsVC" sender:self];
     
 }
 
@@ -170,9 +210,9 @@ const float squareLength = 80.0f;
     [[PHImageManager defaultManager]requestImageForAsset:lastAsset targetSize:self.selectPhotoButton.frame.size contentMode:PHImageContentModeAspectFill options:PHImageRequestOptionsVersionCurrent resultHandler:^(UIImage *result, NSDictionary *info){
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            self.selectPhotoButton.layer.cornerRadius = self.selectPhotoButton.frame.size.height/2;
-            self.selectPhotoButton.backgroundColor = [UIColor clearColor];
-            [[self selectPhotoButton] setBackgroundImage:result forState:UIControlStateNormal];
+            view2.selectButton.layer.cornerRadius = view2.selectButton.frame.size.height/2;
+            view2.selectButton.backgroundColor = [UIColor clearColor];
+            [[view2 selectButton] setBackgroundImage:result forState:UIControlStateNormal];
             
             });
     }];
@@ -218,11 +258,11 @@ const float squareLength = 80.0f;
          if ([cameraPosition isEqualToString:@"Front"]) {
              NSLog(@"front");
              
-             self.imagePreview.image = flippedImage;
+             view2.imageViewPreview.image = flippedImage;
          }else {
              NSLog(@"Back");
              
-             self.imagePreview.image = image;
+             view2.imageViewPreview.image = image;
          }
          
         [self setImageTaken:YES];
@@ -230,13 +270,13 @@ const float squareLength = 80.0f;
          
      }];
     
-    self.yesButton.hidden = NO;
-    self.cancelButton.hidden = NO;
-    self.selectPhotoButton.hidden = YES;
-    self.cameraButton.hidden = YES;
-    self.flipCameraButton.hidden = YES;
-    self.flashButton.hidden = YES;
-    self.cameraButtonView.hidden = YES;
+    view2.yesPhotoButton.hidden = NO;
+    view2.cancelPhotoButton.hidden = NO;
+    view2.selectButton.hidden = YES;
+    view2.cameraPhotoButton.hidden = YES;
+    view2.flipButton.hidden = YES;
+    view2.flashCameraButton.hidden = YES;
+    view2.cameraButtonView.hidden = YES;
 
     
     
@@ -301,18 +341,19 @@ const float squareLength = 80.0f;
 
 - (IBAction)cancelButtonPressed:(id)sender {
     
-    self.yesButton.hidden = YES;
-    self.cancelButton.hidden = YES;
-    self.selectPhotoButton.hidden = NO;
-    self.cameraButton.hidden = NO;
-    self.flipCameraButton.hidden = NO;
-    self.flashButton.hidden = NO;
-    self.cameraButtonView.hidden = NO;
-    self.imagePreview.image = nil;
+    view2.yesPhotoButton.hidden = YES;
+    view2.cancelPhotoButton.hidden = YES;
+    view2.selectButton.hidden = NO;
+    view2.cameraPhotoButton.hidden = NO;
+    view2.flipButton.hidden = NO;
+    view2.flashCameraButton.hidden = NO;
+    view2.cameraButtonView.hidden = NO;
+    view2.imageViewPreview.image = nil;
     
 }
 - (IBAction)yesButtonPressed:(id)sender {
     
+    [self performSegueWithIdentifier:@"toEditingVC" sender:self];
     
 }
 - (IBAction)flashButtonPressed:(id)sender {
@@ -409,7 +450,7 @@ const float squareLength = 80.0f;
     
     if ([segue.destinationViewController isKindOfClass:[EditingViewController class]]) {
         EditingViewController *editingViewController = segue.destinationViewController;
-        editingViewController.editingImage = self.imagePreview.image;
+        editingViewController.editingImage = view2.imageViewPreview.image;
     }
     
     

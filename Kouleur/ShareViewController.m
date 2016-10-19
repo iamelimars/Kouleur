@@ -14,7 +14,7 @@
 
 @implementation ShareViewController
 
-@synthesize finalImage;
+@synthesize finalImage, docController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,36 +80,158 @@
 -(void)shareToTwitter {
     
     NSLog(@"twitter");
+    twitterSLComposer = [[SLComposeViewController alloc]init];
+    twitterSLComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [twitterSLComposer addImage:finalImage];
+    [twitterSLComposer setInitialText:@"Go download the 'Kouleur' app!!"];
+    [self presentViewController:twitterSLComposer animated:YES completion:nil];
     
 }
 -(void)shareToFacebook {
     
     NSLog(@"facebook");
+    SLComposer = [[SLComposeViewController alloc]init];
+    SLComposer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [SLComposer setInitialText:[NSString stringWithFormat:@"CLRS"]];
+    [SLComposer addImage:finalImage];
+    [self presentViewController:SLComposer animated:YES completion:nil];
     
 }
 -(void)shareToInstagram {
     
     NSLog(@"instagram");
+    NSString* imagePath = [NSString stringWithFormat:@"%@/image.igo", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]];
+    [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    [UIImagePNGRepresentation(self.finalImage)writeToFile:imagePath atomically:YES];
+    
+    docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
+    docController.delegate = self;
+    docController.UTI = @"com.instagram.photo";
+    //[self.docController presentPreviewAnimated:YES];
+    
+    [docController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
 
 }
 -(void)saveToCameraRoll {
     
     NSLog(@"Camera Roll");
-
+    UIImageWriteToSavedPhotosAlbum(self.finalImage,nil,nil , nil);
+    
+    
+    [RKDropdownAlert show];
+    [RKDropdownAlert title:@"Saved!" message:@"Image Saved To Camera Roll" backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
     
 }
+
+
+
 -(void)sendAsMessage {
     
     NSLog(@"message");
+    NSString* imagePath = [NSString stringWithFormat:@"%@/image.igo", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]];
+    [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    [UIImagePNGRepresentation(finalImage)writeToFile:imagePath atomically:YES];
+    
+    MFMessageComposeViewController *textComposer = [[MFMessageComposeViewController alloc] init];
+    [textComposer setMessageComposeDelegate:self];
+    
+    if ([MFMessageComposeViewController canSendText]) {
+        [textComposer setRecipients:NULL];
+        [textComposer setBody:@"Go Download Kouleur from the Apple App Store."];
+        NSData *data = UIImagePNGRepresentation(finalImage);
+        [textComposer addAttachmentData:data typeIdentifier:@"image/png" filename:@"image.png"];
+        
+        [self presentViewController:textComposer animated:YES completion:NULL];
+        
+    } else {
+        
+        NSLog(@"Error");
+        
+    }
 
     
 }
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    [RKDropdownAlert show];
+    
+    switch (result)
+    {
+        case MessageComposeResultCancelled:
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Cancelled!" message:@"Message Cancelled" backgroundColor:[UIColor flatRedColor] textColor:[UIColor flatWhiteColor]];
+            break;
+        case MessageComposeResultSent:
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Sent!" message:@"Message Sent" backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
+            break;
+        case MessageComposeResultFailed:
+            [RKDropdownAlert title:@"Failed!" message:@"Message Sending Failed" backgroundColor:[UIColor flatRedColorDark] textColor:[UIColor flatWhiteColor]];
+            break;
+    }
+}
+
+
 -(void)sendAsEmail {
     
     NSLog(@"email");
 
+    NSString* imagePath = [NSString stringWithFormat:@"%@/image.igo", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]];
+    [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    [UIImagePNGRepresentation(finalImage)writeToFile:imagePath atomically:YES];
+    
+    MFMailComposeViewController *imageEmail = [[MFMailComposeViewController alloc]init];
+    imageEmail.mailComposeDelegate = self;
+    [imageEmail setSubject:@"Kouleur app!"];
+    NSString *bodyOfEmail = @"Go Download Kouleur from the Apple App Store.";
+    [imageEmail setMessageBody:bodyOfEmail isHTML:NO];
+    NSData *data = UIImagePNGRepresentation(finalImage);
+    [imageEmail addAttachmentData:data mimeType:@"image/png" fileName:@"image.png"];
+    
+    
+    [self presentViewController:imageEmail animated:YES completion:NULL];
     
 }
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Cancelled!" message:@"Email Sending Cancelled" backgroundColor:[UIColor flatRedColor] textColor:[UIColor flatWhiteColor]];
+            break;
+        case MFMailComposeResultSaved:[RKDropdownAlert show];
+            [RKDropdownAlert title:@"Saved!" message:@"Email Saved" backgroundColor:[UIColor flatSkyBlueColor] textColor:[UIColor flatWhiteColor]];
+            break;
+        case MFMailComposeResultSent:
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Sent!" message:@"Email Sent" backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
+            break;
+        case MFMailComposeResultFailed:
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Failure!" message:@"Email Sending Failed" backgroundColor:[UIColor flatRedColorDark] textColor:[UIColor flatWhiteColor]];
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+- (void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller {
+    self.docController = nil;
+}
+
+
+-(UIImage *)createImage:(UIImageView *)imgView //save Image
+{
+    
+    UIImageWriteToSavedPhotosAlbum(self.finalImage,nil,nil , nil);
+    return self.finalImage;
+}
+
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections
 //    return 0;

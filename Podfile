@@ -9,6 +9,7 @@ pod 'HUMSlider'
 pod 'MZFormSheetPresentationController'
 pod 'ChameleonFramework'
 pod 'GPUImage', '~> 0.1'
+pod 'RKDropdownAlert'
 end
 
 target 'KouleurTests' do
