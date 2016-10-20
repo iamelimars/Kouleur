@@ -18,14 +18,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self createAndLoadInterstitial];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+}
+- (void)createAndLoadInterstitial {
+    self.interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-9906091830733745/3386219711"];
+    self.interstitial.delegate = self;
+    GADRequest *request = [GADRequest request];
+    // Request test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made.
+    request.testDevices = @[ kGADSimulatorID, @"fd3efe9a2aa0d5b371f5a7e868f7d08a" ];
+    [self.interstitial loadRequest:request];
+    
 }
 
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad
+{
+    NSLog(@"interstitial success");
+    [self.interstitial presentFromRootViewController:self];
+}
 -(void)viewDidAppear:(BOOL)animated {
     
     if (finalImage == nil) {
@@ -230,6 +248,17 @@
     
     UIImageWriteToSavedPhotosAlbum(self.finalImage,nil,nil , nil);
     return self.finalImage;
+}
+
+-(BOOL)dropdownAlertWasTapped:(RKDropdownAlert *)alert {
+    
+    
+    return YES;
+}
+-(BOOL)dropdownAlertWasDismissed {
+    
+    
+    return YES;
 }
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

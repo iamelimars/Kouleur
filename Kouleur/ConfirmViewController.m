@@ -18,6 +18,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    self.nativeExpressAdView.adUnitID = @"ca-app-pub-9906091830733745/2747091311";
+    self.nativeExpressAdView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    [self.nativeExpressAdView loadRequest:request];
+    
+    request.testDevices = @[ @"fd3efe9a2aa0d5b371f5a7e868f7d08a" ];
+    
+}
+-(void)viewDidAppear:(BOOL)animated {
+    
+    
     
 }
 -(void)viewWillAppear:(BOOL)animated {

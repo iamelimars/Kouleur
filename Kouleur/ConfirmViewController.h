@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EditingViewController.h"
 @import Photos;
+@import GoogleMobileAds;
 
 @interface ConfirmViewController : UIViewController <PHPhotoLibraryChangeObserver>
 
@@ -16,5 +17,6 @@
 
 @property (nonatomic, strong) PHAsset *asset;
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
+@property (weak, nonatomic) IBOutlet GADNativeExpressAdView *nativeExpressAdView;
 
 @end

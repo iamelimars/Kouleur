@@ -26,6 +26,8 @@ static NSString *currentFill = @"Fill";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
     self.currentFilter = currentWhitePoint;
     self.isHueSelected = NO;
     self.filterIsActive = YES;
@@ -63,6 +65,8 @@ static NSString *currentFill = @"Fill";
     
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

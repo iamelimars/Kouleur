@@ -676,19 +676,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqx-Sq-fBf">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqx-Sq-fBf" customClass="GADNativeExpressAdView">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Uzx-Az-RkN"/>
+                                    <constraint firstAttribute="height" constant="80" id="0FV-E6-pNa"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tfy-db-egH">
-                                <rect key="frame" x="0.0" y="72" width="375" height="451"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="463"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x84-Vq-2Gx" customClass="roundedButton">
-                                <rect key="frame" x="20" y="538" width="335" height="36"/>
+                                <rect key="frame" x="16" y="543" width="343" height="36"/>
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.37647058823529411" blue="0.73333333333333328" alpha="0.68641786320810816" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="KwZ-Nl-mhi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Yes?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -700,21 +703,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="tfy-db-egH" secondAttribute="trailing" id="2Y8-NF-NL9"/>
-                            <constraint firstItem="tfy-db-egH" firstAttribute="top" secondItem="HsE-8A-p6S" secondAttribute="bottom" constant="8" id="BR0-0N-6uF"/>
-                            <constraint firstItem="bqx-Sq-fBf" firstAttribute="top" secondItem="x84-Vq-2Gx" secondAttribute="bottom" constant="13" id="LmU-3f-fJJ"/>
-                            <constraint firstAttribute="trailing" secondItem="bqx-Sq-fBf" secondAttribute="trailing" id="OiD-77-uGe"/>
-                            <constraint firstItem="x84-Vq-2Gx" firstAttribute="top" secondItem="tfy-db-egH" secondAttribute="bottom" constant="15" id="UhZ-Eu-9W5"/>
-                            <constraint firstItem="tfy-db-egH" firstAttribute="leading" secondItem="paI-Av-hTM" secondAttribute="leading" id="X5Y-VM-H9L"/>
-                            <constraint firstItem="x84-Vq-2Gx" firstAttribute="leading" secondItem="paI-Av-hTM" secondAttribute="leadingMargin" constant="4" id="ZNI-eK-wWI"/>
-                            <constraint firstItem="bqx-Sq-fBf" firstAttribute="leading" secondItem="paI-Av-hTM" secondAttribute="leading" id="kB1-0O-VH0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="x84-Vq-2Gx" secondAttribute="trailing" constant="4" id="kKp-Td-Vs3"/>
-                            <constraint firstItem="5hc-fW-QgA" firstAttribute="top" secondItem="bqx-Sq-fBf" secondAttribute="bottom" id="xr5-vt-DDy"/>
+                            <constraint firstItem="bqx-Sq-fBf" firstAttribute="leading" secondItem="paI-Av-hTM" secondAttribute="leading" id="65H-mi-gng"/>
+                            <constraint firstItem="x84-Vq-2Gx" firstAttribute="top" secondItem="tfy-db-egH" secondAttribute="bottom" constant="8" id="AMA-9h-iPA"/>
+                            <constraint firstItem="x84-Vq-2Gx" firstAttribute="trailing" secondItem="paI-Av-hTM" secondAttribute="trailingMargin" id="IrL-sm-GbF"/>
+                            <constraint firstItem="5hc-fW-QgA" firstAttribute="top" secondItem="bqx-Sq-fBf" secondAttribute="bottom" id="UMz-8V-96F"/>
+                            <constraint firstItem="tfy-db-egH" firstAttribute="leading" secondItem="paI-Av-hTM" secondAttribute="leading" id="flM-tc-9Ve"/>
+                            <constraint firstItem="x84-Vq-2Gx" firstAttribute="leading" secondItem="paI-Av-hTM" secondAttribute="leadingMargin" id="hdw-sq-J2j"/>
+                            <constraint firstAttribute="trailing" secondItem="tfy-db-egH" secondAttribute="trailing" id="pUJ-wQ-EQR"/>
+                            <constraint firstItem="tfy-db-egH" firstAttribute="top" secondItem="HsE-8A-p6S" secondAttribute="bottom" constant="8" id="v9D-gP-R2B"/>
+                            <constraint firstAttribute="trailing" secondItem="bqx-Sq-fBf" secondAttribute="trailing" id="vM0-WF-uxu"/>
+                            <constraint firstItem="bqx-Sq-fBf" firstAttribute="top" secondItem="x84-Vq-2Gx" secondAttribute="bottom" constant="8" id="xwB-CF-jQs"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imageView" destination="tfy-db-egH" id="3Xa-7j-oyj"/>
+                        <outlet property="nativeExpressAdView" destination="bqx-Sq-fBf" id="PRw-yf-KQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrP-lH-d0z" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,8 @@
 #import <ChameleonFramework/Chameleon.h>
 #import "GPUImage.h"
 #import "ShareViewController.h"
+@import GoogleMobileAds;
+
 
 
 
@@ -33,6 +35,8 @@
 @property (weak, nonatomic) UIImage *editingImage;
 @property (weak, nonatomic) UIImage *inputImage;
 @property (strong, nonatomic) UIImage *newwImage;
+
+
 
 @property (nonatomic, strong) HMSegmentedControl *filtersSegmentedControl;
 @property (nonatomic, strong) HMSegmentedControl *bottomSegmentedControl;

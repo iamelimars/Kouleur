@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
- platform :ios, '8.0'
+ platform :ios, ‘8.0’
 # Uncomment this line if you're using Swift
  use_frameworks!
 
@@ -10,6 +10,8 @@ pod 'MZFormSheetPresentationController'
 pod 'ChameleonFramework'
 pod 'GPUImage', '~> 0.1'
 pod 'RKDropdownAlert'
+pod 'Firebase/Core'
+pod 'Firebase/AdMob'
 end
 
 target 'KouleurTests' do
