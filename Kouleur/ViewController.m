@@ -172,7 +172,7 @@ const float squareLength = 80.0f;
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:&error];
     
     if (!input) {
-        //Handle the error appropriately
+        //Handle the error
         NSLog(@"ERROR: Trying to open camera: %@", error);
     }else if ([self.session canAddInput:input]) {
         [self.session addInput:input];
@@ -207,7 +207,7 @@ const float squareLength = 80.0f;
     fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     PHFetchResult *fetchResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:fetchOptions];
     PHAsset *lastAsset = [fetchResult lastObject];
-    [[PHImageManager defaultManager]requestImageForAsset:lastAsset targetSize:self.selectPhotoButton.frame.size contentMode:PHImageContentModeAspectFill options:PHImageRequestOptionsVersionCurrent resultHandler:^(UIImage *result, NSDictionary *info){
+    [[PHImageManager defaultManager]requestImageForAsset:lastAsset targetSize:view2.selectButton.frame.size contentMode:PHImageContentModeAspectFill options:PHImageRequestOptionsVersionCurrent resultHandler:^(UIImage *result, NSDictionary *info){
         dispatch_async(dispatch_get_main_queue(), ^{
             
             view2.selectButton.layer.cornerRadius = view2.selectButton.frame.size.height/2;
@@ -244,7 +244,7 @@ const float squareLength = 80.0f;
          CFDictionaryRef exifAttachments = CMGetAttachment( imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
          if (exifAttachments)
          {
-             // Do something with the attachments.
+             
              NSLog(@"attachements: %@", exifAttachments);
          }
          else
@@ -252,7 +252,6 @@ const float squareLength = 80.0f;
          
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData:imageData];
-         //image.imageOrientation = [UIImageOrientationLeftMirrored];
          UIImage *flippedImage = [UIImage imageWithCGImage:[image CGImage] scale:[image scale] orientation:UIImageOrientationLeftMirrored];
          
          if ([cameraPosition isEqualToString:@"Front"]) {
