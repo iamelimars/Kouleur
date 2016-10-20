@@ -62,7 +62,10 @@ static NSString *currentFill = @"Fill";
     [self createBrightness];
     //[self createFilter];
     
-    
+    self.nativeExpressAdView.adUnitID = @"ca-app-pub-9906091830733745/2747091311";
+    self.nativeExpressAdView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    [self.nativeExpressAdView loadRequest:request];
     
 }
 

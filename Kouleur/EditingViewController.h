@@ -17,9 +17,6 @@
 #import "ShareViewController.h"
 @import GoogleMobileAds;
 
-
-
-
 @import QuartzCore;
 @import CoreImage;
 @import AVFoundation;
@@ -36,6 +33,7 @@
 @property (weak, nonatomic) UIImage *inputImage;
 @property (strong, nonatomic) UIImage *newwImage;
 
+@property (weak, nonatomic) IBOutlet GADNativeExpressAdView *nativeExpressAdView;
 
 
 @property (nonatomic, strong) HMSegmentedControl *filtersSegmentedControl;
