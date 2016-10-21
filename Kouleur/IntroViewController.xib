@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
+                <outlet property="INTROVIEW" destination="YlE-Vc-TsX" id="gu2-q2-VaA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,7 +47,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.83921568627450982" green="0.64313725490196072" blue="0.64313725490196072" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="nMA-1W-QEq" firstAttribute="top" secondItem="d73-MC-x8U" secondAttribute="bottom" constant="8" id="Hyc-8u-5RT"/>
                         <constraint firstItem="nTV-wL-MrJ" firstAttribute="centerX" secondItem="YlE-Vc-TsX" secondAttribute="centerX" id="MAh-0J-EjO"/>

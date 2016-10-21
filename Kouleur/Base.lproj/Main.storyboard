@@ -45,10 +45,10 @@
         <scene sceneID="ra0-4M-HRx">
             <objects>
                 <tableViewController id="OuW-ze-Aw2" customClass="AlbumsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="2BK-9T-N6U">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="2BK-9T-N6U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.66902792453765869" green="0.73128575086593628" blue="0.94889926910400391" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.1725741029" green="0.21834245320000001" blue="0.44677489999999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="114" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KsF-5e-vFa" id="M9m-t1-N8D">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="158" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wek-oG-9Um" id="mmL-RX-Q04">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -83,7 +83,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Albums" id="fMy-DO-h9A">
                         <barButtonItem key="leftBarButtonItem" systemItem="camera" id="vg1-wC-0ak">
-                            <color key="tintColor" red="0.9137254901960784" green="0.37647058823529411" blue="0.73333333333333328" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="backToCamera:" destination="OuW-ze-Aw2" id="VXw-i2-5q8"/>
                             </connections>
@@ -155,7 +155,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="NKJ-9v-DKN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Social" id="VC7-Tb-hsd">
                                 <cells>
@@ -435,7 +435,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Manage" id="egY-Zp-zXp">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Ipu-RR-sSs">
-                            <color key="tintColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="backButtonPressed:" destination="Qok-Ua-GVY" id="VD8-K6-rOr"/>
                             </connections>
@@ -691,7 +691,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x84-Vq-2Gx" customClass="roundedButton">
                                 <rect key="frame" x="16" y="543" width="343" height="36"/>
-                                <color key="backgroundColor" red="0.9137254901960784" green="0.37647058823529411" blue="0.73333333333333328" alpha="0.68641786320810816" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.85490196080000003" green="0.8862745098" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="KwZ-Nl-mhi"/>
                                 </constraints>
@@ -737,11 +737,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ij0-Ex-YuL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
-                            <color key="textColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -762,11 +762,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="c49-g1-Ok6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
-                            <color key="textColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.67889569260000004" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>

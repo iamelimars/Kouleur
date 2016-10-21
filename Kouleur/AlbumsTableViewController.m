@@ -88,6 +88,7 @@ static NSString * const CollectionSegue = @"showCollection";
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:AllPhotosReuseIdentifier forIndexPath:indexPath];
         cell.textLabel.text = NSLocalizedString(@"All Photos", @"");
+        cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13.0];
         //cell.textLabel.textColor = [UIColor blueColor];
         
     } else {
@@ -103,6 +104,7 @@ static NSString * const CollectionSegue = @"showCollection";
         
         cell = [tableView dequeueReusableCellWithIdentifier:CollectionCellReuseIdentifier forIndexPath:indexPath];
         cell.textLabel.text = collection.localizedTitle;
+        cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13.0];
         //cell.textLabel.textColor = [UIColor blueColor];
     }
     
@@ -112,6 +114,20 @@ static NSString * const CollectionSegue = @"showCollection";
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
     return self.sectionLocalizedTitles[section];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(10, 8, self.view.frame.size.width - 20, 20);
+    //myLabel.textAlignment = NSTextAlignmentRight;
+    myLabel.font = [UIFont fontWithName:@"Avenir-MediumOblique" size:15.0];
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    
+    return headerView;
 }
 
 #pragma mark - PHPhotoLibraryChangeObserver

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface IntroViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *INTROVIEW;
 
 @end

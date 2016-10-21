@@ -42,22 +42,15 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbC-Kb-ZuY">
                                     <rect key="frame" x="3" y="3" width="54" height="54"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.27409733949999998" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.83921568629999999" green="0.64313725489999995" blue="0.64313725489999995" alpha="0.30057010138378376" colorSpace="calibratedRGB"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.91498154399999998" green="0.3783349097" blue="0.73496383430000001" alpha="0.3361486487" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.85490196080000003" green="0.8862745098" blue="0.97254901959999995" alpha="0.55917440878378377" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="Onl-Hk-fVH"/>
                                 <constraint firstAttribute="height" constant="60" id="kES-Jm-wFA"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxK-6L-GfM">
-                            <rect key="frame" x="60" y="585" width="45" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="P9t-8o-tav"/>
-                                <constraint firstAttribute="height" constant="45" id="hgn-zH-Mie"/>
-                            </constraints>
-                        </button>
                         <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYA-Yd-OdU">
                             <rect key="frame" x="181" y="19" width="13" height="32"/>
                             <constraints>
@@ -67,12 +60,12 @@
                             <state key="normal" image="Flash"/>
                         </button>
                         <button opaque="NO" alpha="0.55000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-je-7mC">
-                            <rect key="frame" x="269" y="596" width="30" height="24"/>
+                            <rect key="frame" x="269" y="588" width="43" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="Eyi-fA-Nda"/>
-                                <constraint firstAttribute="height" constant="24" id="VnP-Kd-sjP"/>
+                                <constraint firstAttribute="height" constant="40" id="ZIO-cS-Qcv"/>
+                                <constraint firstAttribute="width" constant="43" id="Zi9-rP-qgJ"/>
                             </constraints>
-                            <state key="normal" image="flipCamera"/>
+                            <state key="normal" image="flipCamOval"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulp-Mo-ZgQ">
                             <rect key="frame" x="310" y="28" width="45" height="45"/>
@@ -82,13 +75,20 @@
                                 <constraint firstAttribute="height" constant="45" id="g6v-47-Ens"/>
                             </constraints>
                         </button>
+                        <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxK-6L-GfM">
+                            <rect key="frame" x="60" y="585" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="45" id="P9t-8o-tav"/>
+                                <constraint firstAttribute="height" constant="45" id="hgn-zH-Mie"/>
+                            </constraints>
+                        </button>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="NnO-je-7mC" secondAttribute="bottom" constant="47" id="1H9-cn-pgh"/>
                         <constraint firstItem="d1L-uC-yU2" firstAttribute="centerX" secondItem="Tr5-04-6qa" secondAttribute="centerX" id="4Gx-bD-ycI"/>
                         <constraint firstAttribute="trailing" secondItem="ulp-Mo-ZgQ" secondAttribute="trailing" constant="20" id="8In-Yz-uox"/>
-                        <constraint firstItem="NnO-je-7mC" firstAttribute="leading" secondItem="d1L-uC-yU2" secondAttribute="trailing" constant="52" id="8nz-a4-RDk"/>
                         <constraint firstAttribute="bottom" secondItem="PxK-6L-GfM" secondAttribute="bottom" constant="37" id="H8e-RO-Rxi"/>
+                        <constraint firstAttribute="bottom" secondItem="NnO-je-7mC" secondAttribute="bottom" constant="39" id="MLS-uE-mOP"/>
+                        <constraint firstItem="NnO-je-7mC" firstAttribute="leading" secondItem="d1L-uC-yU2" secondAttribute="trailing" constant="52" id="Rry-6D-2iv"/>
                         <constraint firstItem="UYA-Yd-OdU" firstAttribute="centerX" secondItem="Tr5-04-6qa" secondAttribute="centerX" id="ULj-VM-CAs"/>
                         <constraint firstItem="d1L-uC-yU2" firstAttribute="leading" secondItem="PxK-6L-GfM" secondAttribute="trailing" constant="52" id="Ywb-5R-Fyb"/>
                         <constraint firstItem="vte-2v-1ZD" firstAttribute="top" secondItem="Tr5-04-6qa" secondAttribute="top" constant="28" id="b7J-dK-4qy"/>
@@ -116,6 +116,6 @@
     </objects>
     <resources>
         <image name="Flash" width="13" height="32"/>
-        <image name="flipCamera" width="264" height="240"/>
+        <image name="flipCamOval" width="216" height="168"/>
     </resources>
 </document>

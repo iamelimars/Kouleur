@@ -21,6 +21,11 @@
     
     [GADMobileAds configureWithApplicationID:@"ca-app-pub-9906091830733745~7596093317"];
     
+    NSDictionary *barButtonAppearanceDict = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Light" size:15.0]};
+    [[UIBarButtonItem appearance] setTitleTextAttributes:barButtonAppearanceDict forState:UIControlStateNormal];
+    
+    //[[UILabel appearance] setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
+    
     return YES;
 }
 
