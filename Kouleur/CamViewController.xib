@@ -59,14 +59,6 @@
                             </constraints>
                             <state key="normal" image="Flash"/>
                         </button>
-                        <button opaque="NO" alpha="0.55000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-je-7mC">
-                            <rect key="frame" x="269" y="588" width="43" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="ZIO-cS-Qcv"/>
-                                <constraint firstAttribute="width" constant="43" id="Zi9-rP-qgJ"/>
-                            </constraints>
-                            <state key="normal" image="flipCamOval"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulp-Mo-ZgQ">
                             <rect key="frame" x="310" y="28" width="45" height="45"/>
                             <color key="backgroundColor" red="0.23018704349999999" green="0.77713233230000001" blue="0.31589496140000001" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -81,6 +73,14 @@
                                 <constraint firstAttribute="width" constant="45" id="P9t-8o-tav"/>
                                 <constraint firstAttribute="height" constant="45" id="hgn-zH-Mie"/>
                             </constraints>
+                        </button>
+                        <button opaque="NO" alpha="0.55000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-je-7mC">
+                            <rect key="frame" x="269" y="588" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ZIO-cS-Qcv"/>
+                                <constraint firstAttribute="width" constant="40" id="Zi9-rP-qgJ"/>
+                            </constraints>
+                            <state key="normal" image="modernFlipCam1"/>
                         </button>
                     </subviews>
                     <constraints>
@@ -116,6 +116,6 @@
     </objects>
     <resources>
         <image name="Flash" width="13" height="32"/>
-        <image name="flipCamOval" width="216" height="168"/>
+        <image name="modernFlipCam1" width="162" height="162"/>
     </resources>
 </document>

@@ -370,12 +370,11 @@ static NSString *currentFill = @"Fill";
             [rgbFilter setBlue:blue];
             
             [self ColorFilter:red Green:green Blue:blue];
-//            UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
-//            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
-//            //CGFloat originalScale = self.imageView.image.scale;
-//            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:    originalOrientation];
-//            self.imageView.image = final_image;
-            //[self createFilter];
+
+            
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Color" message:@"Adjust the brightness, saturation or opacity!" backgroundColor:[UIColor colorWithHexString:@"DAE2F8"] textColor:[UIColor flatBlackColor]];
+            
             
             NSLog(@"Started on White Point");
 
@@ -398,6 +397,8 @@ static NSString *currentFill = @"Fill";
             self.currentFilter = currentFill;
             [self removeFilter];
             NSLog(@"Fill");
+            
+            [RKDropdownAlert title:@"Color" message:@"Adjust the brightness, saturation or opacity!" backgroundColor:[UIColor colorWithHexString:@"D6A4A4"] textColor:[UIColor flatBlackColor]];
             
         } else if (self.filtersSegmentedControl.selectedSegmentIndex == 2) {
             

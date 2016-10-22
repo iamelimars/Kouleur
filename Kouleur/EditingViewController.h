@@ -15,6 +15,7 @@
 #import <ChameleonFramework/Chameleon.h>
 #import "GPUImage.h"
 #import "ShareViewController.h"
+#import "RKDropdownAlert.h"
 @import GoogleMobileAds;
 
 @import QuartzCore;
@@ -26,7 +27,7 @@
 @import CoreGraphics;
 @protocol PassColorDelegate;
 
-@interface EditingViewController : UIViewController <PassColorDelegate>
+@interface EditingViewController : UIViewController <PassColorDelegate, RKDropdownAlertDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *editingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) UIImage *editingImage;
