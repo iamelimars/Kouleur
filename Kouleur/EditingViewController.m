@@ -67,6 +67,14 @@ static NSString *currentFill = @"Fill";
     GADRequest *request = [GADRequest request];
     [self.nativeExpressAdView loadRequest:request];
     
+    self.whitePointOpacity = self.opacitySlider.value;
+    self.whitePointSaturation = self.saturationSlider.value;
+    self.whitePointBrightness = self.brightnessSlider.value;
+    
+    self.fillOpacity = 0.5;
+    self.fillSaturation = 0.5;
+    self.fillBrightness = 0.5;
+    
 }
 
 
@@ -82,6 +90,7 @@ static NSString *currentFill = @"Fill";
     //self.filterView.backgroundColor = [UIColor colorWithHue:0.350000 saturation:1.0 brightness:1.0 alpha:1.0];
     //self.filterColor = [UIColor colorWithHue:currentHue saturation:1.0 brightness:1.0 alpha:0.7];
     
+
 }
 
 -(void)ColorFilter:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue{
@@ -90,44 +99,62 @@ static NSString *currentFill = @"Fill";
     [rgbFilter setGreen:green];
     [rgbFilter setBlue:blue];
     
-    
-    [fx_image removeTarget:monochromeFilter];
-    [monochromeFilter removeTarget:brightnessFilter];
-    [brightnessFilter removeTarget:saturationFilter];
-    
     [fx_image addTarget:rgbFilter];
     [rgbFilter addTarget:brightnessFilter];
     [brightnessFilter addTarget:saturationFilter];
     [saturationFilter addTarget:opacityFilter];
     [opacityFilter useNextFrameForImageCapture];
     [fx_image processImage];
-    
-    
 }
-/*
--(void)MonchromeFilter:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue Intensity:(CGFloat)intensity {
-    
-    
-    
-    self.currentFilter = currentMonochrome;
-    
-    [monochromeFilter setIntensity:intensity];
-    [monochromeFilter setColorRed:red green:green blue:blue];
-    
-    [fx_image removeTarget:rgbFilter];
-    [rgbFilter removeTarget:brightnessFilter];
-    [brightnessFilter removeTarget:saturationFilter];
-    [saturationFilter removeTarget:opacityFilter];
-    
-    [fx_image addTarget:monochromeFilter];
-    [monochromeFilter addTarget:brightnessFilter];
-    [brightnessFilter addTarget:saturationFilter];
-    
-    [saturationFilter useNextFrameForImageCapture];
+-(void)updateUI {
+    [brightnessFilter setBrightness:self.brightnessSlider.value];
+    [opacityFilter useNextFrameForImageCapture];
     [fx_image processImage];
+    UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
+    UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+    final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:originalOrientation];
+    self.imageView.image = final_image;
+    
     
 }
-*/
+-(void)didChangeToWhitePoint {
+    
+    self.opacitySlider.maximumValue = 1.0;
+    self.opacitySlider.minimumValue = 0.0;
+    
+    self.saturationSlider.maximumValue = 2.0;
+    self.saturationSlider.minimumValue = 0.0;
+    
+    self.brightnessSlider.maximumValue = 1.0;
+    self.brightnessSlider.minimumValue = -1.0;
+    
+    [self.opacitySlider setValue:self.whitePointOpacity animated:YES];
+    [self.saturationSlider setValue:self.whitePointSaturation animated:YES];
+    [self.brightnessSlider setValue:self.whitePointBrightness animated:YES];
+    
+    NSLog(@"This is the whitePointOpacity value %f", self.whitePointOpacity);
+    NSLog(@"This is the whitePointSaturation value %f", self.whitePointSaturation);
+    NSLog(@"This is the whitePointBrightness value %f", self.whitePointBrightness);
+    
+}
+
+-(void)didChangeTofill {
+    
+    self.opacitySlider.maximumValue = 1.0;
+    self.opacitySlider.minimumValue = 0.0;
+    
+    self.saturationSlider.maximumValue = 1.0;
+    self.saturationSlider.minimumValue = 0.0;
+    
+    self.brightnessSlider.maximumValue = 1.0;
+    self.brightnessSlider.minimumValue = 0.0;
+    
+    [self.opacitySlider setValue:self.fillOpacity animated:YES];
+    [self.saturationSlider setValue:self.fillSaturation animated:YES];
+    [self.brightnessSlider setValue:self.fillBrightness animated:YES];
+    
+    
+}
 -(void)createFilter {
     self.editingImageView.image = self.editingImage;
     
@@ -323,54 +350,119 @@ static NSString *currentFill = @"Fill";
         self.filterView.hidden = YES;
     } else {
     
-        switch (self.filtersSegmentedControl.selectedSegmentIndex) {
-            case 0:
-                self.filterIsActive = YES;
-                self.filterName = @"CIWhitePointAdjust";
-                self.currentFilter = currentWhitePoint;
-                gpuColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:self.opacitySlider.value];
-                CGFloat red, green, blue, alpha;
-                [gpuColor getRed:&red green:&green blue:&blue alpha:&alpha];
-                [rgbFilter setRed:red];
-                [rgbFilter setGreen:green];
-                [rgbFilter setBlue:blue];
-                [self ColorFilter:red Green:green Blue:blue];
-                //[self createFilter];
-                self.filterView.hidden = YES;
-                NSLog(@"White Point");
-                break;
-//            case 1:
-//                self.filterIsActive = YES;
-//                self.filterName = @"CIColorMonochrome";
-//                self.currentFilter = currentMonochrome;
-//                gpuColor = [UIColor colorWithHue:self.currentHue saturation:self.saturationSlider.value brightness:self.brightnessSlider.value alpha:1.0];
-//                CGFloat red2, green2, blue2, alpha2;
-//                [gpuColor getRed:&red2 green:&green2 blue:&blue2 alpha:&alpha2];
-//                [rgbFilter setRed:red2];
-//                [rgbFilter setGreen:green2];
-//                [rgbFilter setBlue:blue2];
-//                [self MonchromeFilter:red2 Green:green2 Blue:blue2 Intensity:self.opacitySlider.value];
-//                self.filterView.hidden = YES;
-//                NSLog(@"Monochrome");
-//                break;
-                
-            case 1:
-                self.filterIsActive = NO;
-                self.filterView.hidden = NO;
-                self.currentFilter = currentFill;
-                [self removeFilter];
-                NSLog(@"Fill");
-                break;
-            case 2:
-                self.filterIsActive = NO;
-                self.filterView.hidden = YES;
-                [self removeFilter];
-                NSLog(@"None");
-                break;
-                
-            default:
-                break;
+        if (self.filtersSegmentedControl.selectedSegmentIndex == 0) {
+            
+            self.fillOpacity = self.opacitySlider.value;
+            self.fillSaturation = self.saturationSlider.value;
+            self.fillBrightness = self.brightnessSlider.value;
+            self.filterView.hidden = YES;
+            [self didChangeToWhitePoint];
+            
+            self.filterIsActive = YES;
+            self.filterName = @"CIWhitePointAdjust";
+            self.currentFilter = currentWhitePoint;
+            gpuColor = [UIColor colorWithHue:self.currentHue saturation:1.0 brightness:1.0 alpha:1.0];
+            
+            CGFloat red, green, blue, alpha;
+            [gpuColor getRed:&red green:&green blue:&blue alpha:&alpha];
+            [rgbFilter setRed:red];
+            [rgbFilter setGreen:green];
+            [rgbFilter setBlue:blue];
+            
+            [self ColorFilter:red Green:green Blue:blue];
+//            UIImage *final_image = [opacityFilter imageFromCurrentFramebuffer];
+//            UIImageOrientation originalOrientation = self.imageView.image.imageOrientation;
+//            //CGFloat originalScale = self.imageView.image.scale;
+//            final_image = [UIImage imageWithCGImage:[final_image CGImage] scale:1.0 orientation:    originalOrientation];
+//            self.imageView.image = final_image;
+            //[self createFilter];
+            
+            NSLog(@"Started on White Point");
+
+            
+        } else if (self.filtersSegmentedControl.selectedSegmentIndex == 1) {
+            
+            self.whitePointOpacity = self.opacitySlider.value;
+            self.whitePointSaturation = self.saturationSlider.value;
+            self.whitePointBrightness = self.brightnessSlider.value;
+            
+            
+            NSLog(@"This is the whitePointOpacity value %f", self.whitePointOpacity);
+            NSLog(@"This is the whitePointSaturation value %f", self.whitePointSaturation);
+            NSLog(@"This is the whitePointBrightness value %f", self.whitePointBrightness);
+            
+            [self didChangeTofill];
+            
+            self.filterIsActive = NO;
+            self.filterView.hidden = NO;
+            self.currentFilter = currentFill;
+            [self removeFilter];
+            NSLog(@"Fill");
+            
+        } else if (self.filtersSegmentedControl.selectedSegmentIndex == 2) {
+            
+            self.filterIsActive = NO;
+            self.filterView.hidden = YES;
+            [self removeFilter];
+            NSLog(@"None");
+            
+            
         }
+        
+//        switch (self.filtersSegmentedControl.selectedSegmentIndex) {
+//            case 0:
+//                self.fillOpacity = self.opacitySlider.value;
+//                self.fillSaturation = self.saturationSlider.value;
+//                self.fillBrightness = self.brightnessSlider.value;
+//                self.filterView.hidden = YES;
+//                [self didChangeToWhitePoint];
+//                
+//                self.filterIsActive = YES;
+//                self.filterName = @"CIWhitePointAdjust";
+//                self.currentFilter = currentWhitePoint;
+//                gpuColor = [UIColor colorWithHue:self.currentHue saturation:1.0 brightness:1.0 alpha:1.0];
+//                
+//                CGFloat red, green, blue, alpha;
+//                [gpuColor getRed:&red green:&green blue:&blue alpha:&alpha];
+//                [rgbFilter setRed:red];
+//                [rgbFilter setGreen:green];
+//                [rgbFilter setBlue:blue];
+//                
+//                [self ColorFilter:red Green:green Blue:blue];
+//                
+//                //[self createFilter];
+//                
+//                NSLog(@"Started on White Point");
+//                
+//                break;
+//            case 1:
+//                self.whitePointOpacity = self.opacitySlider.value;
+//                self.whitePointSaturation = self.saturationSlider.value;
+//                self.whitePointBrightness = self.brightnessSlider.value;
+//                
+//                
+//                NSLog(@"This is the whitePointOpacity value %f", self.whitePointOpacity);
+//                NSLog(@"This is the whitePointSaturation value %f", self.whitePointSaturation);
+//                NSLog(@"This is the whitePointBrightness value %f", self.whitePointBrightness);
+//                
+//                [self didChangeTofill];
+//                
+//                self.filterIsActive = NO;
+//                self.filterView.hidden = NO;
+//                self.currentFilter = currentFill;
+//                [self removeFilter];
+//                NSLog(@"Fill");
+//                break;
+//            case 2:
+//                self.filterIsActive = NO;
+//                self.filterView.hidden = YES;
+//                [self removeFilter];
+//                NSLog(@"None");
+//                break;
+//                
+//            default:
+//                break;
+//        }
     }
 
 

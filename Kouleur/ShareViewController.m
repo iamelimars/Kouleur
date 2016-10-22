@@ -34,7 +34,7 @@
     GADRequest *request = [GADRequest request];
     // Request test ads on devices you specify. Your test device ID is printed to the console when
     // an ad request is made.
-    request.testDevices = @[ kGADSimulatorID, @"fd3efe9a2aa0d5b371f5a7e868f7d08a" ];
+    //request.testDevices = @[ kGADSimulatorID, @"fd3efe9a2aa0d5b371f5a7e868f7d08a" ];
     [self.interstitial loadRequest:request];
     
 }

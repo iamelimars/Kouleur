@@ -77,6 +77,14 @@
 @property BOOL filterIsActive;
 @property CGFloat currentHue;
 
+@property float whitePointOpacity;
+@property float whitePointSaturation;
+@property float whitePointBrightness;
+
+@property float fillOpacity;
+@property float fillSaturation;
+@property float fillBrightness;
+
 -(void)updateHue;
 
 @end
