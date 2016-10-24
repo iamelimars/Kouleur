@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *cameraButtonView;
 @property (weak, nonatomic) IBOutlet UIButton *cameraPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *testButton;
+@property (weak, nonatomic) IBOutlet UIView *yesPhotoView;
+@property (weak, nonatomic) IBOutlet UIView *cancelPhotoView;
 
 
 

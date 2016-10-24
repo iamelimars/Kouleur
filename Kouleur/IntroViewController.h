@@ -11,5 +11,7 @@
 
 @interface IntroViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *INTROVIEW;
+@property (weak, nonatomic) IBOutlet UILabel *introLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lowerLabel;
 
 @end

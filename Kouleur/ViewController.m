@@ -124,8 +124,8 @@ const float squareLength = 80.0f;
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    view2.yesPhotoButton.hidden = YES;
-    view2.cancelPhotoButton.hidden = YES;
+    view2.yesPhotoView.hidden = YES;
+    view2.cancelPhotoView.hidden = YES;
     view2.selectButton.hidden = NO;
     view2.cameraPhotoButton.hidden = NO;
     view2.flipButton.hidden = NO;
@@ -137,8 +137,8 @@ const float squareLength = 80.0f;
 
 -(void)viewDidAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES];
-    self.yesButton.hidden = YES;
-    self.cancelButton.hidden = YES;
+    //self.yesButton.hidden = YES;
+    //self.cancelButton.hidden = YES;
 
     [self createCamera];
     [self setImagePickerButton];
@@ -269,8 +269,8 @@ const float squareLength = 80.0f;
          
      }];
     
-    view2.yesPhotoButton.hidden = NO;
-    view2.cancelPhotoButton.hidden = NO;
+    view2.yesPhotoView.hidden = NO;
+    view2.cancelPhotoView.hidden = NO;
     view2.selectButton.hidden = YES;
     view2.cameraPhotoButton.hidden = YES;
     view2.flipButton.hidden = YES;
@@ -340,8 +340,8 @@ const float squareLength = 80.0f;
 
 - (IBAction)cancelButtonPressed:(id)sender {
     
-    view2.yesPhotoButton.hidden = YES;
-    view2.cancelPhotoButton.hidden = YES;
+    view2.yesPhotoView.hidden = YES;
+    view2.cancelPhotoView.hidden = YES;
     view2.selectButton.hidden = NO;
     view2.cameraPhotoButton.hidden = NO;
     view2.flipButton.hidden = NO;

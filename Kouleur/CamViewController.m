@@ -20,8 +20,8 @@
     
     self.cameraButtonView.layer.cornerRadius = self.cameraButtonView.frame.size.height / 2;
     self.cameraPhotoButton.layer.cornerRadius = self.cameraPhotoButton.frame.size.height / 2;
-    self.yesPhotoButton.layer.cornerRadius = self.yesPhotoButton.frame.size.height / 2;
-    self.cancelPhotoButton.layer.cornerRadius = self.cancelPhotoButton.frame.size.height / 2;
+    //self.yesPhotoButton.layer.cornerRadius = self.yesPhotoButton.frame.size.height / 2;
+    //self.cancelPhotoButton.layer.cornerRadius = self.cancelPhotoButton.frame.size.height / 2;
     self.selectButton.layer.cornerRadius = self.selectButton.frame.size.height / 2;
     self.selectButton.clipsToBounds = TRUE;
 

@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController">
             <connections>
                 <outlet property="INTROVIEW" destination="YlE-Vc-TsX" id="gu2-q2-VaA"/>
+                <outlet property="introLabel" destination="d73-MC-x8U" id="IYd-rs-SxI"/>
+                <outlet property="lowerLabel" destination="nMA-1W-QEq" id="dJi-eV-joL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

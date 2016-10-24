@@ -27,6 +27,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)animateLabelShowText:(NSString*)newText characterDelay:(NSTimeInterval)delay
+{
+    }
 /*
 #pragma mark - Navigation
 
