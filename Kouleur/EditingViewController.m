@@ -125,8 +125,8 @@ static NSString *currentFill = @"Fill";
     self.saturationSlider.maximumValue = 2.0;
     self.saturationSlider.minimumValue = 0.0;
     
-    self.brightnessSlider.maximumValue = 1.0;
-    self.brightnessSlider.minimumValue = -1.0;
+    self.brightnessSlider.maximumValue = 0.55;
+    self.brightnessSlider.minimumValue = -0.5;
     
     [self.opacitySlider setValue:self.whitePointOpacity animated:YES];
     [self.saturationSlider setValue:self.whitePointSaturation animated:YES];
@@ -480,8 +480,8 @@ static NSString *currentFill = @"Fill";
     
     brightnessView = [[UIView alloc]initWithFrame:filtersSegmentedControl.bounds];
     brightnessSlider = [[HUMSlider alloc]init];
-    [brightnessSlider setMinimumValue:-1.0f];
-    [brightnessSlider setMaximumValue:1.0f];
+    [brightnessSlider setMinimumValue:-0.5f];
+    [brightnessSlider setMaximumValue:0.55f];
     [brightnessSlider setValue:0.0f];
     brightnessSlider.continuous = YES;
     
@@ -720,6 +720,7 @@ static NSString *currentFill = @"Fill";
     [rgbFilter setRed:red];
     [rgbFilter setGreen:green];
     [rgbFilter setBlue:blue];
+    [opacityFilter setOpacity:0.65];
     if (self.currentFilter == currentWhitePoint) {
         
         [self ColorFilter:red Green:green Blue:blue];

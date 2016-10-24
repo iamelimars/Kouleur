@@ -38,7 +38,7 @@ const float squareLength = 80.0f;
     IntroViewController *view1 = [[IntroViewController alloc]initWithNibName:@"IntroViewController" bundle:nil];
     view2 = [[CamViewController alloc]initWithNibName:@"CamViewController" bundle:nil];
     
-
+    view1.view.backgroundColor = [[UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:@[[[UIColor colorWithHexString:@"DAE2F8"]colorWithAlphaComponent:1.0],[[UIColor colorWithHexString:@"D6A4A4"]colorWithAlphaComponent:0.80]]]colorWithAlphaComponent:0.8];
     
     //Add UIVC's to scroll view
     [self addChildViewController:view1];
