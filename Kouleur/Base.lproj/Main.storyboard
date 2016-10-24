@@ -176,8 +176,11 @@
                                                                 <constraint firstAttribute="width" constant="25" id="Lk3-Ah-Jbs"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Twitter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnI-aa-GeN">
-                                                            <rect key="frame" x="48" y="18" width="293" height="25"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnI-aa-GeN">
+                                                            <rect key="frame" x="290" y="18" width="51" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="Df1-UO-1Oe"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -185,6 +188,9 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="CnI-aa-GeN" secondAttribute="trailing" constant="18" id="1Ep-jG-SqK"/>
+                                                        <constraint firstAttribute="bottom" secondItem="CnI-aa-GeN" secondAttribute="bottom" constant="18" id="HFO-pf-Fim"/>
+                                                        <constraint firstItem="CnI-aa-GeN" firstAttribute="top" secondItem="smm-yM-v5W" secondAttribute="top" constant="18" id="J7u-kK-Ie0"/>
                                                         <constraint firstItem="bff-MP-1hU" firstAttribute="centerY" secondItem="smm-yM-v5W" secondAttribute="centerY" id="PN0-tH-U5e"/>
                                                         <constraint firstItem="bff-MP-1hU" firstAttribute="leading" secondItem="smm-yM-v5W" secondAttribute="leading" constant="15" id="hUh-g4-ne8"/>
                                                     </constraints>
@@ -216,8 +222,11 @@
                                                                 <constraint firstAttribute="height" constant="25" id="jyX-eB-Wix"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovG-gr-aTy">
-                                                            <rect key="frame" x="48" y="18" width="293" height="25"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovG-gr-aTy">
+                                                            <rect key="frame" x="266" y="18" width="75" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="9Me-Pr-q8R"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -226,7 +235,9 @@
                                                     <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="Gxz-Gb-kf1" firstAttribute="leading" secondItem="XKB-dg-Ke0" secondAttribute="leading" constant="15" id="h2f-uo-nNg"/>
+                                                        <constraint firstItem="ovG-gr-aTy" firstAttribute="centerY" secondItem="XKB-dg-Ke0" secondAttribute="centerY" id="jjl-S1-5St"/>
                                                         <constraint firstItem="Gxz-Gb-kf1" firstAttribute="centerY" secondItem="XKB-dg-Ke0" secondAttribute="centerY" id="mzo-TS-xfH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ovG-gr-aTy" secondAttribute="trailing" constant="18" id="rrd-c3-oqV"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -256,8 +267,11 @@
                                                                 <constraint firstAttribute="width" constant="27" id="uhj-A2-VMB"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instagram" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnK-sb-iBZ">
-                                                            <rect key="frame" x="50" y="19" width="293" height="25"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnK-sb-iBZ">
+                                                            <rect key="frame" x="268" y="18" width="75" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="pfu-aR-evo"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -265,6 +279,8 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.89411764705882346" green="0.25098039215686274" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="wnK-sb-iBZ" secondAttribute="trailing" constant="16" id="GDL-hq-Qzk"/>
+                                                        <constraint firstItem="wnK-sb-iBZ" firstAttribute="centerY" secondItem="0OP-I8-tAg" secondAttribute="centerY" id="GIK-0h-xzR"/>
                                                         <constraint firstItem="oPU-Lj-Ho9" firstAttribute="centerY" secondItem="0OP-I8-tAg" secondAttribute="centerY" id="diS-FO-2ze"/>
                                                         <constraint firstItem="oPU-Lj-Ho9" firstAttribute="leading" secondItem="0OP-I8-tAg" secondAttribute="leading" constant="15" id="iza-8c-xIX"/>
                                                     </constraints>
@@ -397,10 +413,9 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc6-IV-8fS">
-                                                            <rect key="frame" x="50" y="18" width="293" height="25"/>
+                                                            <rect key="frame" x="301" y="18" width="42" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="b5U-xL-0D4"/>
-                                                                <constraint firstAttribute="width" constant="293" id="zTn-Wm-cQr"/>
+                                                                <constraint firstAttribute="height" constant="25" id="5bC-u0-YZy"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -409,10 +424,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.1725741029" green="0.21834245320000001" blue="0.44677489999999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="vc6-IV-8fS" firstAttribute="leading" secondItem="Z2i-zM-6EV" secondAttribute="trailing" constant="8" id="Qwr-7V-f09"/>
                                                         <constraint firstItem="Z2i-zM-6EV" firstAttribute="centerY" secondItem="YhO-5O-qFW" secondAttribute="centerY" id="aNa-Uo-DVe"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vc6-IV-8fS" secondAttribute="trailing" constant="16" id="lTx-sc-x8t"/>
+                                                        <constraint firstItem="vc6-IV-8fS" firstAttribute="centerY" secondItem="YhO-5O-qFW" secondAttribute="centerY" id="qEH-0i-QR3"/>
                                                         <constraint firstItem="Z2i-zM-6EV" firstAttribute="leading" secondItem="YhO-5O-qFW" secondAttribute="leading" constant="15" id="qZc-15-wFM"/>
-                                                        <constraint firstItem="vc6-IV-8fS" firstAttribute="centerY" secondItem="YhO-5O-qFW" secondAttribute="centerY" id="tl2-DV-01L"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

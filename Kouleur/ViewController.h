@@ -56,7 +56,7 @@
 @property(nonatomic, retain) AVCaptureVideoPreviewLayer *previewLayer;
 @property(nonatomic, retain) CALayer *rootLayer;
 @property(weak, nonatomic) NSString *cameraPosition;
-@property(nonatomic, assign) BOOL *imageTaken;
+@property(nonatomic, assign) BOOL imageTaken;
 //@property(weak, nonatomic) cameraFocusSquaree *camFocus;
 @property (nonatomic, retain) UIView *focusSquare;
 @property (nonatomic) CGPoint point;

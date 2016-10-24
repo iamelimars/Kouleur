@@ -155,6 +155,7 @@ static NSString *currentFill = @"Fill";
     
     
 }
+/*
 -(void)createFilter {
     self.editingImageView.image = self.editingImage;
     
@@ -227,7 +228,7 @@ static NSString *currentFill = @"Fill";
     
     
 }
-
+*/
 -(void)removeFilter {
     
     self.imageView.image = self.editingImage;
