@@ -21,16 +21,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YlE-Vc-TsX">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KOULEUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d73-MC-x8U">
-                            <rect key="frame" x="108" y="273" width="160" height="121"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="160" id="h0F-6P-IEH"/>
-                                <constraint firstAttribute="height" constant="121" id="ojs-st-ek9"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="19"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView userInteractionEnabled="NO" alpha="0.64999997615814209" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slide Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="nTV-wL-MrJ">
                             <rect key="frame" x="169" y="631" width="37" height="13"/>
                             <constraints>
@@ -45,6 +35,16 @@
                                 <constraint firstAttribute="width" constant="201" id="jnw-si-rvM"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-UltraLightItalic" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KOULEUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d73-MC-x8U">
+                            <rect key="frame" x="107" y="273" width="160" height="121"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="160" id="h0F-6P-IEH"/>
+                                <constraint firstAttribute="height" constant="121" id="ojs-st-ek9"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="19"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

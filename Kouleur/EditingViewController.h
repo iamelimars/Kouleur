@@ -61,7 +61,6 @@
 @property (strong, nonatomic) GPUImageHueFilter *hueFilter;
 @property (strong, nonatomic) GPUImageMonochromeFilter *monochromeFilter;
 
-
 @property (nonatomic, strong) HUMSlider *brightnessSlider;
 @property (nonatomic, strong) HUMSlider *opacitySlider;
 @property (nonatomic, strong) HUMSlider *saturationSlider;
@@ -85,7 +84,5 @@
 @property float fillOpacity;
 @property float fillSaturation;
 @property float fillBrightness;
-
--(void)updateHue;
 
 @end

@@ -23,16 +23,7 @@ const float squareLength = 80.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //self.MainScrollView.delegate = self;
-//    CGRect scrollFrame;
-//    scrollFrame.origin = self.MainScrollView.frame.origin;
-//    scrollFrame.size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 2);
-//    self.MainScrollView.frame = scrollFrame;
-//    self.introView.frame = CGRectMake(self.introView.frame.origin.x, self.introView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-//    self.cameraView.frame = CGRectMake(self.introView.frame.origin.x, self.introView.frame.origin.y + self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
-//    //[self.introView setFrame:self.view.frame];
-//    NSLog(@"%f", self.MainScrollView.frame.size.height);
-//    [self.cameraView setFrame:self.view.frame];
+    
     [self setImagePickerButton];
     
     IntroViewController *view1 = [[IntroViewController alloc]initWithNibName:@"IntroViewController" bundle:nil];
@@ -57,7 +48,6 @@ const float squareLength = 80.0f;
     [view2.flipButton addTarget:self action:@selector(flipCameraPressed:) forControlEvents:UIControlEventTouchDown];
 
     
-    
     CGRect V2Frame = view2.view.frame;
     V2Frame.origin.y = self.view.frame.size.height;
     //V2Frame.origin.x = 0;
@@ -69,59 +59,6 @@ const float squareLength = 80.0f;
 
     
 }
-//-(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-//    
-//    /*
-//    NSLog(@"focus1");
-//        CGPoint touchPoint = [recognizer locationInView:[recognizer.view superview]];
-//        //focusLayer.frame = CGRectMake((touchPoint.x-25), (touchPoint.y-25), 50, 50);
-//    
-//        
-//        if (self.imageTaken == NO ) {
-//            
-//            if ([_device isFocusPointOfInterestSupported]) {
-//                NSError *error;
-//                NSLog(@"focus2");
-//                
-//                if ([_device lockForConfiguration:&error]) {
-//                    [_device setFocusPointOfInterest:touchPoint];
-//                    [_device setExposurePointOfInterest:touchPoint];
-//                    NSLog(@"focus3");
-//                    
-//                    [_device setFocusMode:AVCaptureFocusModeAutoFocus];
-//                    if ([_device isExposureModeSupported:AVCaptureExposureModeAutoExpose]){
-//                        [_device setExposureMode:AVCaptureExposureModeAutoExpose];
-//                        self.point = [recognizer locationInView:self.cameraView];
-//                        focusSquare.frame = CGRectMake(self.point.x, self.point.y, 30, 30);
-//                        focusSquare.backgroundColor = [UIColor clearColor];
-//                        focusSquare.layer.cornerRadius = 15;
-//                        focusSquare.layer.borderWidth = 2.0;
-//                        focusSquare.layer.borderColor = [UIColor whiteColor].CGColor;
-//                        focusSquare.layer.masksToBounds = YES;
-//                        focusSquare.alpha = 1.0;
-//                        
-//                        [self.cameraView addSubview:focusSquare];
-//                        [self focusPoint];
-//                        self.fadeInFocus = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
-//                                                                          selector:@selector(focusFadeIn) userInfo:nil repeats:NO];
-//                        
-//                        
-//                        NSLog(@"X location: %f", _point.x);
-//                        NSLog(@"Y Location: %f",_point.y);
-//                    }
-//                    [_device unlockForConfiguration];
-//                }
-//            }else{
-//                NSLog(@"Not Supported");
-//                
-//            }
-//        }
-//        
-//        // NSLog(@"x = %f, y = %f", touchPoint.x, touchPoint.y);
-//   */
-//    
-//}
-
 -(void)viewWillAppear:(BOOL)animated {
     
     view2.yesPhotoView.hidden = YES;
@@ -137,16 +74,72 @@ const float squareLength = 80.0f;
 
 -(void)viewDidAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES];
-    //self.yesButton.hidden = YES;
-    //self.cancelButton.hidden = YES;
-
     [self createCamera];
     [self setImagePickerButton];
     focusSquare = [[UIView alloc]init];
+    NSString *mediaType = AVMediaTypeVideo;
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if ((status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) && (authStatus == AVAuthorizationStatusDenied || authStatus == AVAuthorizationStatusRestricted)) {
+        
+        [RKDropdownAlert show];
+        [RKDropdownAlert title:@"We've run into a problem" message:@"To access photo album & camera, go to settings and enable photos & cameras." backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
+        
+    } else {
     
+    
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            switch (status) {
+                case PHAuthorizationStatusAuthorized:
+                
+                    break;
+                case PHAuthorizationStatusRestricted:
+                
+                    [RKDropdownAlert show];
+                    [RKDropdownAlert title:@"We've run into a problem" message:@"To access photo album, go to settings and  enable photos." backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
+                
+                    break;
+                case PHAuthorizationStatusDenied:
+                
+                    [RKDropdownAlert show];
+                    [RKDropdownAlert title:@"We've run into a problem" message:@"To access photo album, go to settings and enable photos." backgroundColor:[UIColor flatWatermelonColor] textColor:[UIColor flatWhiteColor]];
+                
+                    break;
+                default:
+                    break;
+            }
+        }];
+    
+        switch ([AVCaptureDevice authorizationStatusForMediaType:mediaType]) {
+            case AVAuthorizationStatusAuthorized:
+            
+                break;
+            case AVAuthorizationStatusDenied:
+                [RKDropdownAlert show];
+                [RKDropdownAlert title:@"We've run into a problem" message:@"To access camera, go to settings and enable camera." backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
+                break;
+            case AVAuthorizationStatusRestricted:
+                [RKDropdownAlert show];
+                [RKDropdownAlert title:@"We've run into a problem" message:@"To access camera, go to settings and enable camera." backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
 
+                break;
+            default:
+                break;
+        }
     
+    
+        if(authStatus == AVAuthorizationStatusNotDetermined){
+            [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+                if(granted){
+                    NSLog(@"Granted access to %@", mediaType);
+                } else {
+                    NSLog(@"Not granted access to %@", mediaType);
+                }
+            }];
+        }
+    }
 }
+
 -(void)viewDidDisappear:(BOOL)animated {
     
     [self.session stopRunning];
@@ -174,6 +167,10 @@ const float squareLength = 80.0f;
     if (!input) {
         //Handle the error
         NSLog(@"ERROR: Trying to open camera: %@", error);
+        
+        [RKDropdownAlert show];
+        [RKDropdownAlert title:@"We've run into a problem" message:@"To access camera, go to settings and enable camera." backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
+        
     }else if ([self.session canAddInput:input]) {
         [self.session addInput:input];
     }
@@ -311,6 +308,8 @@ const float squareLength = 80.0f;
         if(!newVideoInput || err)
         {
             NSLog(@"Error creating capture device input: %@", err.localizedDescription);
+            [RKDropdownAlert show];
+            [RKDropdownAlert title:@"Error!" message:@"Error switching camera." backgroundColor:[UIColor flatMintColor] textColor:[UIColor flatWhiteColor]];
         }
         else
         {
@@ -374,7 +373,6 @@ const float squareLength = 80.0f;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"focus1");
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:touch.view];
@@ -385,12 +383,10 @@ const float squareLength = 80.0f;
             
             if ([_device isFocusPointOfInterestSupported]) {
                 NSError *error;
-                NSLog(@"focus2");
                 
                 if ([_device lockForConfiguration:&error]) {
                     [_device setFocusPointOfInterest:touchPoint];
                     [_device setExposurePointOfInterest:touchPoint];
-                    NSLog(@"focus3");
                     
                     [_device setFocusMode:AVCaptureFocusModeAutoFocus];
                     if ([_device isExposureModeSupported:AVCaptureExposureModeAutoExpose]){
@@ -409,9 +405,7 @@ const float squareLength = 80.0f;
                         self.fadeInFocus = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
                                                                           selector:@selector(focusFadeIn) userInfo:nil repeats:NO];
                         
-                        
-                        NSLog(@"X location: %f", _point.x);
-                        NSLog(@"Y Location: %f",_point.y);
+
                     }
                     [_device unlockForConfiguration];
                 }
@@ -421,14 +415,11 @@ const float squareLength = 80.0f;
             }
         }
         
-        // NSLog(@"x = %f, y = %f", touchPoint.x, touchPoint.y);
     }];
     
 }
 -(void)focusPoint{
     
-    //focusSquare = [[UIView alloc]initWithFrame:CGRectMake(self.point.x, self.point.y, 20, 20)];
-    //focusSquare.frame = CGRectMake(self.point.x, self.point.y, 20, 20);
     [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionOverrideInheritedOptions | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations: ^{
         focusSquare.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:focusSquare];

@@ -16,6 +16,7 @@
 #import "EditingViewController.h"
 #import "IntroViewController.h"
 #import "CamViewController.h"
+#import "RKDropdownAlert.h"
 @import AVFoundation;
 @import AssetsLibrary;
 @import Photos;
